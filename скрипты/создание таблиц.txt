@@ -1,0 +1,106 @@
+create table users(
+    id serial primary key not null,
+    first_name varchar(128) not null,
+    second_name varchar(128) not null,
+    middle_name varchar(128),
+    login varchar(128) not null,
+    password varchar(128) not null,
+    email varchar(128) not null,
+    looking_for_work bool not null
+);
+
+create table intellectual_property(
+    id serial primary key not null,
+    title varchar(1024) not null,
+    owner_id int not null,
+    content bytea not null,
+    content_type varchar(128) not null,
+    access_type varchar(128) not null,
+    price money not null,
+    rating real not null,
+    number_of_scores int not null
+);
+
+create table roles(
+    id serial primary key not null,
+    title varchar(128) not null
+);
+
+create table professions(
+    id serial primary key not null,
+    title varchar(1024) not null
+);
+
+create table vacancies(
+    id serial primary key,
+    employer_id int not null,
+    description varchar(3064) not null,
+    salary money not null,
+    open_date timestamp not null,
+    profession_id int not null,
+    work_experience int not null
+);
+
+create table portfolios(
+    id serial primary key not null,
+    user_id int not null,
+    portfolio bytea not null
+);
+
+create table user_role(
+    user_id int not null,
+    role_id int not null
+);
+
+create table blogger_subscriber(
+    blogger_id int not null,
+    subscriber_id int not null
+);
+
+create table buy_requests(
+    id serial primary key,
+    seller_id int not null,
+    buyer_id int not null,
+    intellectual_property_id int not null,
+    sending_date timestamp not null,
+    response_date timestamp not null,
+    success boolean not null
+);
+
+create table access_buyer_profiles (
+    intellectual_property_id int not null,
+    user_id int not null,
+    bought_forever boolean,
+    watched boolean
+);
+
+
+create table intellectual_property_author(
+    intellectual_property_id int not null,
+    user_id int not null
+);
+
+create table watched_intellectual_property(
+    id serial not null primary key,
+    user_id int not null,
+    intellectual_property_id int,
+    date timestamp
+);
+
+create table reviews(
+    id serial primary key not null,
+    author_id int not null,
+    text varchar(3064),
+    score real,
+    intellectual_property_id int not null
+);
+
+create table genres(
+    id serial primary key not null,
+    title varchar(128)
+);
+
+create table genre_intellectual_property(
+    intellectual_property_id int,
+    genre_id int
+);
