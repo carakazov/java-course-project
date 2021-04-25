@@ -1,0 +1,8 @@
+project\dao\IDao.class
+project\dao\impl\UserDaoImpl.class
+project\dao\UserDao.class
+project\model\PrimaryKeyEntity.class
+project\model\RoleEnum.class
+project\model\User.class
+project\controller\RegistrationController.class
+project\model\Role.class
