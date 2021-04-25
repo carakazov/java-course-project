@@ -12,5 +12,5 @@ import lombok.Data;
 public class PrimaryKeyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 }

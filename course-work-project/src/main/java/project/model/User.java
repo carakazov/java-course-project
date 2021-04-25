@@ -13,9 +13,8 @@ public class User extends PrimaryKeyEntity {
     @Column(name = "second_name")
     private String secondName;
     @Column(name = "middle_name")
-    private String middle_name;
+    private String middleName;
     private String email;
-    private String  phone;
     private String login;
     private String password;
     @Column(name = "looking_for_work")

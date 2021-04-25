@@ -8,7 +8,7 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
-@Entity
+@Entity(name = "roles")
 @Data
 public class Role extends PrimaryKeyEntity{
     @Enumerated(EnumType.STRING)
