@@ -188,7 +188,8 @@ const findShadowRoot = element => {
   return findShadowRoot(element.parentNode);
 };
 
-const noop = () => function () {};
+const noop = () => function () {
+};
 
 const reflow = element => element.offsetHeight;
 
@@ -309,6 +310,7 @@ const customEvents = {
   mouseleave: 'mouseout'
 };
 const nativeEvents = new Set(['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll']);
+
 /**
  * ------------------------------------------------------------------------
  * Private methods
@@ -587,6 +589,7 @@ class BaseComponent {
     Data.remove(this._element, this.constructor.DATA_KEY);
     this._element = null;
   }
+
   /** Static */
 
 
@@ -623,6 +626,7 @@ const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$b}${DATA_API_KEY$8}`;
 const CLASS_NAME_ALERT = 'alert';
 const CLASS_NAME_FADE$5 = 'fade';
 const CLASS_NAME_SHOW$8 = 'show';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -705,6 +709,7 @@ class Alert extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -741,6 +746,7 @@ const DATA_API_KEY$7 = '.data-api';
 const CLASS_NAME_ACTIVE$3 = 'active';
 const SELECTOR_DATA_TOGGLE$5 = '[data-bs-toggle="button"]';
 const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$7}`;
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -775,6 +781,7 @@ class Button extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -1020,6 +1027,7 @@ const SELECTOR_DATA_SLIDE = '[data-bs-slide], [data-bs-slide-to]';
 const SELECTOR_DATA_RIDE = '[data-bs-ride="carousel"]';
 const POINTER_TYPE_TOUCH = 'touch';
 const POINTER_TYPE_PEN = 'pen';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -1145,7 +1153,8 @@ class Carousel extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$8,
+    config = {
+      ...Default$8,
       ...config
     };
     typeCheckConfig(NAME$9, config, DefaultType$8);
@@ -1434,12 +1443,14 @@ class Carousel extends BaseComponent {
 
   static carouselInterface(element, config) {
     let data = Data.get(element, DATA_KEY$9);
-    let _config = { ...Default$8,
+    let _config = {
+      ...Default$8,
       ...Manipulator.getDataAttributes(element)
     };
 
     if (typeof config === 'object') {
-      _config = { ..._config,
+      _config = {
+        ..._config,
         ...config
       };
     }
@@ -1477,7 +1488,8 @@ class Carousel extends BaseComponent {
       return;
     }
 
-    const config = { ...Manipulator.getDataAttributes(target),
+    const config = {
+      ...Manipulator.getDataAttributes(target),
       ...Manipulator.getDataAttributes(this)
     };
     const slideIndex = this.getAttribute('data-bs-slide-to');
@@ -1496,6 +1508,7 @@ class Carousel extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -1557,6 +1570,7 @@ const WIDTH = 'width';
 const HEIGHT = 'height';
 const SELECTOR_ACTIVES = '.show, .collapsing';
 const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -1764,7 +1778,8 @@ class Collapse extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$7,
+    config = {
+      ...Default$7,
       ...config
     };
     config.toggle = Boolean(config.toggle); // Coerce string values
@@ -1820,7 +1835,8 @@ class Collapse extends BaseComponent {
 
   static collapseInterface(element, config) {
     let data = Data.get(element, DATA_KEY$8);
-    const _config = { ...Default$7,
+    const _config = {
+      ...Default$7,
       ...Manipulator.getDataAttributes(element),
       ...(typeof config === 'object' && config ? config : {})
     };
@@ -1849,6 +1865,7 @@ class Collapse extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -1955,6 +1972,7 @@ const DefaultType$6 = {
   display: 'string',
   popperConfig: '(null|object|function)'
 };
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -2124,7 +2142,8 @@ class Dropdown extends BaseComponent {
   }
 
   _getConfig(config) {
-    config = { ...this.constructor.Default,
+    config = {
+      ...this.constructor.Default,
       ...Manipulator.getDataAttributes(this._element),
       ...config
     };
@@ -2206,7 +2225,8 @@ class Dropdown extends BaseComponent {
       }];
     }
 
-    return { ...defaultBsPopperConfig,
+    return {
+      ...defaultBsPopperConfig,
       ...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
     };
   } // Static
@@ -2373,6 +2393,7 @@ class Dropdown extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -2448,6 +2469,7 @@ const SELECTOR_DATA_TOGGLE$2 = '[data-bs-toggle="modal"]';
 const SELECTOR_DATA_DISMISS$2 = '[data-bs-dismiss="modal"]';
 const SELECTOR_FIXED_CONTENT$1 = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
 const SELECTOR_STICKY_CONTENT$1 = '.sticky-top';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -2591,7 +2613,8 @@ class Modal extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$5,
+    config = {
+      ...Default$5,
       ...config
     };
     typeCheckConfig(NAME$6, config, DefaultType$5);
@@ -2899,7 +2922,8 @@ class Modal extends BaseComponent {
   static jQueryInterface(config, relatedTarget) {
     return this.each(function () {
       let data = Data.get(this, DATA_KEY$6);
-      const _config = { ...Default$5,
+      const _config = {
+        ...Default$5,
         ...Manipulator.getDataAttributes(this),
         ...(typeof config === 'object' && config ? config : {})
       };
@@ -2919,6 +2943,7 @@ class Modal extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -2948,7 +2973,8 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, functi
   let data = Data.get(target, DATA_KEY$6);
 
   if (!data) {
-    const config = { ...Manipulator.getDataAttributes(target),
+    const config = {
+      ...Manipulator.getDataAttributes(target),
       ...Manipulator.getDataAttributes(this)
     };
     data = new Modal(target, config);
@@ -3069,6 +3095,7 @@ const EVENT_CLICK_DATA_API$1 = `click${EVENT_KEY$5}${DATA_API_KEY$2}`;
 const EVENT_CLICK_DISMISS$1 = `click.dismiss${EVENT_KEY$5}`;
 const SELECTOR_DATA_DISMISS$1 = '[data-bs-dismiss="offcanvas"]';
 const SELECTOR_DATA_TOGGLE$1 = '[data-bs-toggle="offcanvas"]';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -3193,7 +3220,8 @@ class Offcanvas extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$4,
+    config = {
+      ...Default$4,
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' ? config : {})
     };
@@ -3246,6 +3274,7 @@ class Offcanvas extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -3369,6 +3398,7 @@ const DefaultAllowlist = {
   u: [],
   ul: []
 };
+
 function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
   if (!unsafeHtml.length) {
     return unsafeHtml;
@@ -3489,6 +3519,7 @@ const TRIGGER_HOVER = 'hover';
 const TRIGGER_FOCUS = 'focus';
 const TRIGGER_CLICK = 'click';
 const TRIGGER_MANUAL = 'manual';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -3895,7 +3926,8 @@ class Tooltip extends BaseComponent {
         }
       }
     };
-    return { ...defaultBsPopperConfig,
+    return {
+      ...defaultBsPopperConfig,
       ...(typeof this.config.popperConfig === 'function' ? this.config.popperConfig(defaultBsPopperConfig) : this.config.popperConfig)
     };
   }
@@ -3942,7 +3974,8 @@ class Tooltip extends BaseComponent {
     EventHandler.on(this._element.closest(`.${CLASS_NAME_MODAL}`), 'hide.bs.modal', this._hideModalHandler);
 
     if (this.config.selector) {
-      this.config = { ...this.config,
+      this.config = {
+        ...this.config,
         trigger: 'manual',
         selector: ''
       };
@@ -4042,7 +4075,8 @@ class Tooltip extends BaseComponent {
       config.container = config.container[0];
     }
 
-    config = { ...this.constructor.Default,
+    config = {
+      ...this.constructor.Default,
       ...dataAttributes,
       ...(typeof config === 'object' && config ? config : {})
     };
@@ -4136,6 +4170,7 @@ class Tooltip extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -4163,14 +4198,16 @@ const DATA_KEY$3 = 'bs.popover';
 const EVENT_KEY$3 = `.${DATA_KEY$3}`;
 const CLASS_PREFIX = 'bs-popover';
 const BSCLS_PREFIX_REGEX = new RegExp(`(^|\\s)${CLASS_PREFIX}\\S+`, 'g');
-const Default$2 = { ...Tooltip.Default,
+const Default$2 = {
+  ...Tooltip.Default,
   placement: 'right',
   offset: [0, 8],
   trigger: 'click',
   content: '',
   template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div>' + '</div>'
 };
-const DefaultType$2 = { ...Tooltip.DefaultType,
+const DefaultType$2 = {
+  ...Tooltip.DefaultType,
   content: '(string|element|function)'
 };
 const Event$1 = {
@@ -4189,6 +4226,7 @@ const CLASS_NAME_FADE$2 = 'fade';
 const CLASS_NAME_SHOW$2 = 'show';
 const SELECTOR_TITLE = '.popover-header';
 const SELECTOR_CONTENT = '.popover-body';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -4286,6 +4324,7 @@ class Popover extends Tooltip {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -4336,6 +4375,7 @@ const SELECTOR_DROPDOWN$1 = '.dropdown';
 const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
 const METHOD_OFFSET = 'offset';
 const METHOD_POSITION = 'position';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -4410,7 +4450,8 @@ class ScrollSpy extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$1,
+    config = {
+      ...Default$1,
       ...(typeof config === 'object' && config ? config : {})
     };
 
@@ -4538,6 +4579,7 @@ class ScrollSpy extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -4589,6 +4631,7 @@ const SELECTOR_ACTIVE_UL = ':scope > li > .active';
 const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]';
 const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
 const SELECTOR_DROPDOWN_ACTIVE_CHILD = ':scope > .dropdown-menu .active';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -4722,6 +4765,7 @@ class Tab extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * Data Api implementation
@@ -4778,6 +4822,7 @@ const Default = {
   delay: 5000
 };
 const SELECTOR_DATA_DISMISS = '[data-bs-dismiss="toast"]';
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -4891,7 +4936,8 @@ class Toast extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default,
+    config = {
+      ...Default,
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' && config ? config : {})
     };
@@ -4930,6 +4976,7 @@ class Toast extends BaseComponent {
   }
 
 }
+
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -4940,5 +4987,5 @@ class Toast extends BaseComponent {
 
 defineJQueryPlugin(NAME, Toast);
 
-export { Alert, Button, Carousel, Collapse, Dropdown, Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip };
+export {Alert, Button, Carousel, Collapse, Dropdown, Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip};
 //# sourceMappingURL=bootstrap.esm.js.map

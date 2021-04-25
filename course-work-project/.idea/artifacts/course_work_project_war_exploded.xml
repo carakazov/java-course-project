@@ -57,6 +57,7 @@
           <element id="library" level="project" name="Maven: org.mapstruct:mapstruct:1.4.0.Beta1" />
           <element id="library" level="project" name="Maven: javax.el:javax.el-api:2.2.4" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: javax.el:el-api:2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

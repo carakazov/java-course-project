@@ -8,7 +8,7 @@ import project.model.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-25T23:08:01+0300",
+    date = "2021-04-25T23:15:37+0300",
     comments = "version: 1.4.0.Beta1, compiler: javac, environment: Java 11.0.6 (JetBrains s.r.o)"
 )
 public class UserMapperImpl implements UserMapper {
