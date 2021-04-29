@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import project.dao.UserDao;
 import project.model.User;
 
@@ -14,11 +15,9 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
+    @Transactional
     public User create(User item) {
-        entityManager.getTransaction().begin();
-        User user = entityManager.merge(item);
-        entityManager.getTransaction().commit();
-        return user;
+        return entityManager.merge(item);
     }
 
     @Override

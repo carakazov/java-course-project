@@ -1,17 +1,28 @@
 package project.dto;
 
-//import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-//import project.support.validation.annotations.UniqueLogin;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.stereotype.Component;
+import project.support.validation.annotations.UniqueLogin;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Component
 public class IdentityInfoDto {
-    //@NonNull
-    //@Size(min = 5, max = 128)
-    //@UniqueLogin
+    @NotNull
+    @NotBlank
+    @Length(min = 5, max = 15)
+    @UniqueLogin
     private String login;
-    // @NonNull
-    //@Size(min = 5, max = 128)
+    @NotNull
+    @NotBlank
+    @Length(min = 5, max = 15)
     private String password;
+
 }

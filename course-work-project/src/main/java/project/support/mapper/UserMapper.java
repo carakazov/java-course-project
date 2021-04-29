@@ -13,5 +13,7 @@ public interface UserMapper {
     @Mapping(target = "secondName", source = "source.personalInfoDto.surname")
     @Mapping(target = "middleName", source = "source.personalInfoDto.middleName")
     @Mapping(target = "email", source = "source.personalInfoDto.email")
+    @Mapping(target = "isLookingForWork", source = "source.lookingForWork")
+    @Mapping(target = "roles", ignore = true)
     User fromRegistrationDto(RegistrationDto source);
 }

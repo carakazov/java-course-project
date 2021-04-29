@@ -1,37 +1,30 @@
 package project.controller;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.dto.RegistrationDto;
 import project.service.RegistrationService;
+import project.service.RoleService;
 
 
-@Controller
+@RestController
 @Data
+@RequiredArgsConstructor
 public class LoginController {
-    @PersistenceContext
-    private EntityManager em;
-    private RegistrationService registrationService;
-
-    @Autowired
-    public LoginController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
+    private final RegistrationService registrationService;
+    private final RoleService roleService;
 
     @GetMapping
-    public String test() {
-        return "index";
+    public ModelAndView index() {
+        return new ModelAndView("index");
     }
+
 
     @GetMapping("/registration")
     public ModelAndView registration() {
@@ -41,9 +34,15 @@ public class LoginController {
         return modelAndView;
     }
 
-    @PostMapping("/createUser")
-    public ModelAndView newUser(@RequestBody /*@Valid*/ RegistrationDto registrationDto) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/index");
+    @PostMapping(value = "/createUser")
+    public ModelAndView newUser(
+        @RequestBody @ModelAttribute("registrationDto") @Valid RegistrationDto registrationDto,
+        BindingResult result
+    ) {
+        if(result.hasErrors()) {
+            return new ModelAndView("registration");
+        }
+        ModelAndView modelAndView = new ModelAndView("index");
         registrationService.addNewUser(registrationDto);
         return modelAndView;
     }
