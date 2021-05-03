@@ -6,23 +6,29 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import org.postgresql.ds.PGSimpleDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import project.controller.LoginController;
 import project.dao.RoleDao;
 import project.dao.UserDao;
 import project.dao.impl.RoleDaoImpl;
 import project.dao.impl.UserDaoImpl;
+import project.dto.UserDto;
 import project.service.RegistrationService;
 import project.service.RoleService;
+import project.service.UserService;
 import project.service.impl.RegistrationServiceImpl;
 import project.service.impl.RoleServiceImpl;
+import project.service.impl.UserServiceImpl;
 import project.support.mapper.UserMapper;
 import project.support.mapper.UserMapperImpl;
 
@@ -31,6 +37,8 @@ import project.support.mapper.UserMapperImpl;
 @EnableWebMvc
 @EnableTransactionManagement
 public class BeanConfig {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public PlatformTransactionManager transactionManager() {
@@ -58,7 +66,8 @@ public class BeanConfig {
     public LoginController loginController() {
         return new LoginController(
             registrationService(),
-            roleService()
+            roleService(),
+            userService()
         );
     }
 
@@ -82,7 +91,8 @@ public class BeanConfig {
         return new RegistrationServiceImpl(
             userDao(),
             userMapper(),
-            roleDao()
+            roleDao(),
+            passwordEncoder
         );
     }
 
@@ -91,5 +101,19 @@ public class BeanConfig {
         return new RoleServiceImpl(
             roleDao()
         );
+    }
+
+    @Bean
+    public UserService userService() {
+        return new UserServiceImpl(
+            userDao(),
+            userMapper()
+        );
+    }
+
+    @Bean(name = "currentUserDto")
+    @SessionScope
+    public UserDto userDto() {
+        return new UserDto();
     }
 }

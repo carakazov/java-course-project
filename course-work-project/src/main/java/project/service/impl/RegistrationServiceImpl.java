@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.RoleDao;
@@ -23,11 +24,14 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final UserDao userDao;
     private final UserMapper userMapper;
     private final RoleDao roleDao;
-
+    private final PasswordEncoder encoder;
 
     @Override
     @Transactional
     public User addNewUser(RegistrationDto registrationDto) {
+        registrationDto.getIdentityInfoDto().setPassword(
+            encoder.encode(registrationDto.getIdentityInfoDto().getPassword())
+        );
         User user = userMapper.fromRegistrationDto(registrationDto);
         List<Role> userRoles = new ArrayList<>();
         registrationDto.getRoles().forEach(role ->

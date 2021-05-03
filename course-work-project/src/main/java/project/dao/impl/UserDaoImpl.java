@@ -4,19 +4,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.UserDao;
 import project.model.User;
 
 @Repository
+@RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
-
     @Override
     @Transactional
     public User create(User item) {
+        //item.setPassword(passwordEncoder.encode(item.getPassword()));
         return entityManager.merge(item);
     }
 
@@ -56,5 +58,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<String> getAllLogins() {
         return entityManager.createQuery("SELECT user.login FROM users user").getResultList();
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        return (User) entityManager.createQuery("SELECT user FROM users user WHERE user.login = :login")
+            .setParameter("login", login)
+            .getSingleResult();
     }
 }

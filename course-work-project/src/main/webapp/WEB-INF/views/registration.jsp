@@ -2,78 +2,76 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
     <title>Registration</title>
 </head>
 <body>
 <div>
+    <h1>Registration</h1>
     <label>Input your data here:</label>
 </div>
-<div>
+<div class="form-block">
     <form:form method="post" action="${pageContext.request.contextPath}/createUser"
                modelAttribute="registrationDto">
-
         <div>
-            <label>Login: </label>
             <label>
-                <form:input type="text" path="identityInfoDto.login"/>
-                <form:errors path="identityInfoDto.login"/>
+                Login:
             </label>
+            <form:input type="text" path="identityInfoDto.login" cssClass="my-input-form"/>
+            <form:errors path="identityInfoDto.login"/>
         </div>
         <div>
-            <label>Password: </label>
             <label>
-                <form:input type="password" path="identityInfoDto.password"/>
-                <form:errors path="identityInfoDto.password"/>
+                Password:
             </label>
+            <form:input type="password" path="identityInfoDto.password"/>
+            <form:errors path="identityInfoDto.password"/>
         </div>
         <div>
-            <label>Name: </label>
             <label>
-                <form:input type="text" path="personalInfoDto.name"/>
+                Name:
+            </label>
+            <form:input type="text" path="personalInfoDto.name"/>
                 <form:errors path="personalInfoDto.name"/>
-            </label>
         </div>
         <div>
-            <label>Surname: </label>
             <label>
-                <form:input type="text" path="personalInfoDto.surname"/>
+                Surname:
+            </label>
+            <form:input type="text" path="personalInfoDto.surname"/>
                 <form:errors path="personalInfoDto.surname"/>
-            </label>
         </div>
         <div>
-            <label>Middle name:</label>
             <label>
-                <form:input type="text" path="personalInfoDto.middleName"/>
-                <form:errors path="personalInfoDto.middleName"/>
+                Middle name:
             </label>
+            <form:input type="text" path="personalInfoDto.middleName"/>
+                <form:errors path="personalInfoDto.middleName"/>
             <small>Optional</small>
         </div>
         <div>
-            <label>E-mail:</label>
             <label>
-                <form:input type="email" path="personalInfoDto.email"/>
-                <form:errors path="personalInfoDto.email"/>
+                E-mail:
             </label>
+            <form:input type="email" path="personalInfoDto.email"/>
+            <form:errors path="personalInfoDto.email"/>
         </div>
         <div>
-            <label>Who are you?</label>
-            <p>
-                <form:checkbox path="roles" value="user"/> Simple user.
-            </p>
-            <p>
-                <form:checkbox path="roles" value="author"/> Author.
-            </p>
-            <p>
-                <form:checkbox path="roles" value="owner"/> Product owner.
-            </p>
+            <label>
+                Who are you?
+            </label>
+            <form:checkbox path="roles" value="user"/> Simple user.
+            <form:checkbox path="roles" value="author"/> Author.
+            <form:checkbox path="roles" value="owner"/> Product owner.
             <form:errors path="roles"/>
         </div>
         <div>
-            <lavel>Are you looking for work?</lavel>
+            <label>Are you looking for work?</label>
             <form:checkbox path="lookingForWork"/>
-            <form:errors path="lookingForWork"/>
         </div>
-        <button type="submit">Registration</button>
+        <button type="submit" class="button-primary">Registration</button>
     </form:form>
 </div>
 </body>
