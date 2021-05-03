@@ -20,7 +20,7 @@ public class User extends PrimaryKeyEntity {
     @Column(name = "looking_for_work")
     private Boolean isLookingForWork;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"),

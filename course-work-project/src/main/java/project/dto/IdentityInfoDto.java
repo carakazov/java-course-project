@@ -1,6 +1,5 @@
 package project.dto;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -15,14 +14,12 @@ import project.support.validation.annotations.UniqueLogin;
 @AllArgsConstructor
 @Component
 public class IdentityInfoDto {
-    @NotNull
-    @NotBlank
-    @Length(min = 5, max = 15)
+    @NotNull(message = "It is required field")
+    @Length(min = 5, max = 15, message = "Login should be more than 5 symbols and less than 15")
     @UniqueLogin
     private String login;
     @NotNull
-    @NotBlank
-    @Length(min = 5, max = 15)
+    @Length(min = 5, max = 15, message = "Password should be more than 5 symbols and less than 15")
     private String password;
 
 }

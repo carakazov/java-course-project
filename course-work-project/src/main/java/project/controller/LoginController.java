@@ -1,6 +1,8 @@
 package project.controller;
 
 
+import java.security.Principal;
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import lombok.Data;
@@ -9,8 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.dto.RegistrationDto;
+import project.dto.UserDto;
 import project.service.RegistrationService;
 import project.service.RoleService;
+import project.service.UserService;
 
 
 @RestController
@@ -19,12 +23,40 @@ import project.service.RoleService;
 public class LoginController {
     private final RegistrationService registrationService;
     private final RoleService roleService;
+    private final UserService userService;
 
-    @GetMapping
-    public ModelAndView index() {
-        return new ModelAndView("index");
+    @Resource(name = "currentUserDto")
+    private UserDto userDto;
+
+    @GetMapping("/login")
+    public ModelAndView login(@RequestParam(required = false) String error) {
+        ModelAndView modelAndView = new ModelAndView("login");
+        if(error != null) {
+            modelAndView.addObject("error", "Wrong login or password");
+        }
+        return modelAndView;
     }
 
+    @GetMapping
+    public ModelAndView index(Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("index");
+        if(principal != null && !userDto.isEstablished()) {
+            userDto = userService.getUserDto(principal.getName());
+            modelAndView.addObject("session", userDto);
+            userDto.setEstablished(true);
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("/error")
+    public ModelAndView error() {
+        return new ModelAndView("403");
+    }
+
+    @GetMapping(value = "/admin/page")
+    public ModelAndView adminPage() {
+        return new ModelAndView("adminPage");
+    }
 
     @GetMapping("/registration")
     public ModelAndView registration() {
@@ -42,7 +74,7 @@ public class LoginController {
         if(result.hasErrors()) {
             return new ModelAndView("registration");
         }
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("login");
         registrationService.addNewUser(registrationDto);
         return modelAndView;
     }

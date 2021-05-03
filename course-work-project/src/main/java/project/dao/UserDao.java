@@ -6,4 +6,6 @@ import project.model.User;
 
 public interface UserDao extends IDao<User> {
     List<String> getAllLogins();
+
+    User getByLogin(String login);
 }
