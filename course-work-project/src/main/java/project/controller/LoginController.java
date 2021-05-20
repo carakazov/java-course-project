@@ -3,10 +3,12 @@ package project.controller;
 
 import java.security.Principal;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,13 +22,13 @@ import project.service.UserService;
 @RestController
 @Data
 @RequiredArgsConstructor
+@Accessors(chain = true)
 public class LoginController {
     private final RegistrationService registrationService;
     private final RoleService roleService;
     private final UserService userService;
-
     @Resource(name = "currentUserDto")
-    private UserDto userDto;
+    private UserDto currentUserDto;
 
     @GetMapping("/login")
     public ModelAndView login(@RequestParam(required = false) String error) {
@@ -38,12 +40,12 @@ public class LoginController {
     }
 
     @GetMapping
-    public ModelAndView index(Principal principal) {
+    public ModelAndView index(Principal principal, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("index");
-        if(principal != null && !userDto.isEstablished()) {
-            userDto = userService.getUserDto(principal.getName());
-            modelAndView.addObject("session", userDto);
-            userDto.setEstablished(true);
+        if(principal != null && !currentUserDto.isEstablished()) {
+            currentUserDto = userService.getUserDto(principal.getName());
+            currentUserDto.setEstablished(true);
+            request.getSession().setAttribute("session", currentUserDto);
         }
         return modelAndView;
     }
@@ -79,8 +81,4 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/users/{id}")
-    public ModelAndView showUser(@PathVariable(value = "id") int id) {
-        return null;
-    }
 }

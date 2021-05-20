@@ -18,41 +18,18 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public User create(User item) {
-        //item.setPassword(passwordEncoder.encode(item.getPassword()));
         return entityManager.merge(item);
     }
 
     @Override
-    public List<User> create(List<User> item) {
-        return null;
-    }
-
-    @Override
-    public User read(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<User> read() {
-        return null;
-    }
-
-    @Override
+    @Transactional
     public User update(User item) {
-        return null;
-    }
-
-    @Override
-    public List<User> update(List<User> item) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-    }
-
-    @Override
-    public void delete(User item) {
+        entityManager.createQuery("UPDATE users user SET user.description = :description " +
+            "WHERE user.login = :login")
+            .setParameter("description", item.getDescription())
+            .setParameter("login", item.getLogin())
+            .executeUpdate();
+        return entityManager.find(User.class, item.getId());
     }
 
     @Override

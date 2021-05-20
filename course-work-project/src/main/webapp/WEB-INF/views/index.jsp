@@ -14,6 +14,7 @@
 <h1>${session.personalInfo.name} ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР ШИЗОФРЕНИЯ</h1>
 <div>
     <a href="/logout">Logout</a>
+    <a href="/users/${session.login}">Private page</a>
 </div>
 </body>
 </html>

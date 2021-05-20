@@ -24,43 +24,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Role create(Role item) {
-        return null;
-    }
-
-    @Override
-    public List<Role> create(List<Role> item) {
-        return null;
-    }
-
-    @Override
-    public Role read(Long id) {
-        return null;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<Role> read() {
         return entityManager.createQuery("SELECT role FROM roles role").getResultList();
-    }
-
-    @Override
-    public Role update(Role item) {
-        return null;
-    }
-
-    @Override
-    public List<Role> update(List<Role> item) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public void delete(Role item) {
-
     }
 }

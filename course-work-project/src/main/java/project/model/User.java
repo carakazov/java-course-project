@@ -4,9 +4,13 @@ import java.util.List;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity(name = "users")
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class User extends PrimaryKeyEntity {
     @Column(name = "first_name")
     private String firstName;
@@ -19,7 +23,17 @@ public class User extends PrimaryKeyEntity {
     private String password;
     @Column(name = "looking_for_work")
     private Boolean isLookingForWork;
-
+    private String description;
+    @OneToMany
+    @JoinColumn(name = "owner_id")
+    private List<IntellectualProperty> ownedProperty;
+    @ManyToMany
+    @JoinTable(
+        name = "intellectual_property_author",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "intellectual_property_id")
+    )
+    private List<IntellectualProperty> createdWorks;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_role",

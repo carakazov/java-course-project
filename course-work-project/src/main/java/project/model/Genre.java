@@ -10,14 +10,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@Entity(name = "roles")
 @Data
+@Entity(name = "genres")
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class Role extends PrimaryKeyEntity{
+public class Genre extends PrimaryKeyEntity {
     @Enumerated(EnumType.STRING)
-    private RoleEnum title;
-
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    private GenreTypeEnum title;
+    @ManyToMany(mappedBy = "genres")
+    private List<IntellectualProperty> properties;
 }

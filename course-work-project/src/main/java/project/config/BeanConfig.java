@@ -18,17 +18,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import project.controller.LoginController;
-import project.dao.RoleDao;
-import project.dao.UserDao;
-import project.dao.impl.RoleDaoImpl;
-import project.dao.impl.UserDaoImpl;
+import project.controller.PropertyController;
+import project.controller.UserController;
+import project.dao.*;
+import project.dao.impl.*;
 import project.dto.UserDto;
-import project.service.RegistrationService;
-import project.service.RoleService;
-import project.service.UserService;
-import project.service.impl.RegistrationServiceImpl;
-import project.service.impl.RoleServiceImpl;
-import project.service.impl.UserServiceImpl;
+import project.service.*;
+import project.service.impl.*;
+import project.support.mapper.AddIntellectualPropertyMapper;
+import project.support.mapper.AddIntellectualPropertyMapperImpl;
 import project.support.mapper.UserMapper;
 import project.support.mapper.UserMapperImpl;
 
@@ -72,6 +70,13 @@ public class BeanConfig {
     }
 
     @Bean
+    public UserController userController() {
+        return new UserController(
+            userService()
+        );
+    }
+
+    @Bean
     public UserDao userDao() {
         return new UserDaoImpl();
     }
@@ -107,7 +112,20 @@ public class BeanConfig {
     public UserService userService() {
         return new UserServiceImpl(
             userDao(),
-            userMapper()
+            userMapper(),
+            portfolioService()
+        );
+    }
+
+    @Bean
+    public PortfolioDao portfolioDao() {
+        return new PortfolioDaoImpl();
+    }
+
+    @Bean
+    public PortfolioService portfolioService() {
+        return new PortfolioServiceImpl(
+            portfolioDao()
         );
     }
 
@@ -116,4 +134,37 @@ public class BeanConfig {
     public UserDto userDto() {
         return new UserDto();
     }
+
+    @Bean
+    public PropertyController propertyController() {
+        return new PropertyController(
+            propertyService()
+        );
+    }
+
+    @Bean
+    public GenreDao genreDao() {
+        return new GenreDaoImpl();
+    }
+
+    @Bean
+    public AddIntellectualPropertyMapper addIntellectualPropertyMapper() {
+        return new AddIntellectualPropertyMapperImpl();
+    }
+
+    @Bean
+    public IntellectualPropertyDao intellectualPropertyDao() {
+        return new IntellectualPropertyDaoImpl();
+    }
+
+    @Bean
+    public PropertyService propertyService() {
+        return new PropertyServiceImpl(
+            intellectualPropertyDao(),
+            genreDao(),
+            userService(),
+            addIntellectualPropertyMapper()
+        );
+    }
+
 }

@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import project.dto.RegistrationDto;
 import project.dto.UserDto;
 import project.model.User;
+import project.support.mapper.dto.UserMappingDto;
 
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {
@@ -18,9 +19,12 @@ public interface UserMapper {
     @Mapping(target = "roles", ignore = true)
     User fromRegistrationDto(RegistrationDto source);
 
-    @Mapping(target = "personalInfo.name", source = "source.firstName")
-    @Mapping(target = "personalInfo.surname", source = "source.secondName")
-    @Mapping(target = "personalInfo.middleName", source = "source.middleName")
-    @Mapping(target = "personalInfo.email", source = "source.email")
-    UserDto fromUser(User source);
+    @Mapping(target = "login", source = "source.user.login")
+    @Mapping(target = "personalInfo.name", source = "source.user.firstName")
+    @Mapping(target = "personalInfo.surname", source = "source.user.secondName")
+    @Mapping(target = "personalInfo.middleName", source = "source.user.middleName")
+    @Mapping(target = "personalInfo.email", source = "source.user.email")
+    @Mapping(target = "portfolio", source = "source.portfolio.portfolio")
+    @Mapping(target = "description", source = "source.user.description")
+    UserDto fromUser(UserMappingDto source);
 }
