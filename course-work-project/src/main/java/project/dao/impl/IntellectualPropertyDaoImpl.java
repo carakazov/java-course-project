@@ -5,13 +5,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.IntellectualPropertyDao;
 import project.model.IntellectualProperty;
 
+
 @Repository
 @RequiredArgsConstructor
+@Primary
 public class IntellectualPropertyDaoImpl implements IntellectualPropertyDao {
     @PersistenceContext
     private EntityManager entityManager;

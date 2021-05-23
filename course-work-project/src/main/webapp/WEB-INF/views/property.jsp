@@ -10,11 +10,14 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
 <form:form action="/property" method="post"
-           modelAttribute="property">
-    <form:hidden path="author"/>
+           modelAttribute="property" enctype="multipart/form-data">
+    <form:hidden path="author" value="${property.author}"/>
     <div>
         <label>Title: </label>
         <form:input path="intellectualPropertyDto.attributes.title"/>
@@ -42,10 +45,10 @@
     </div>
     <div>
         <label>Load your content here:</label>
-        <form:input path="intellectualPropertyDto.content"/>
+        <input type="file" name="file">
     </div>
     <div>
-        <button type="submit" class="button"/>
+        <button type="submit" class="button">Add</button>
     </div>
 </form:form>
 </body>
