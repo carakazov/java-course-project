@@ -1,21 +1,23 @@
 package project.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
 @Entity(name = "intellectual_property")
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@EntityListeners(AuditingEntityListener.class)
 public class IntellectualProperty extends PrimaryKeyEntity {
     private String title;
-    private double rating = 0;
-    private BigDecimal price;
+    private double rating;
+    private BigDecimal price = BigDecimal.ZERO;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
@@ -35,4 +37,10 @@ public class IntellectualProperty extends PrimaryKeyEntity {
     @Enumerated(EnumType.STRING)
     private AccessTypeEnum accessType;
     private byte[] content;
+    private boolean approved;
+    @Column(name = "upload_date")
+    @CreatedDate
+    private LocalDateTime uploadDate;
+    @Column(name = "number_of_scores")
+    private int numberOfScores;
 }

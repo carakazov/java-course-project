@@ -10,8 +10,10 @@ import lombok.Data;
 import project.model.AccessTypeEnum;
 import project.model.ContentTypeEnum;
 import project.model.GenreTypeEnum;
+import project.support.validation.annotations.PriceValidation;
 
 @Data
+@PriceValidation
 public class IntellectualPropertyAttributesDto {
     @NotBlank
     private String title;
@@ -22,5 +24,5 @@ public class IntellectualPropertyAttributesDto {
     @NotNull
     private ContentTypeEnum contentType;
     @NotNull
-    private BigDecimal price;
+    private BigDecimal price = BigDecimal.ZERO;
 }

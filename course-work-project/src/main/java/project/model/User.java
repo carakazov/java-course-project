@@ -3,14 +3,14 @@ package project.model;
 import java.util.List;
 import javax.persistence.*;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity(name = "users")
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 public class User extends PrimaryKeyEntity {
     @Column(name = "first_name")
     private String firstName;
@@ -24,8 +24,7 @@ public class User extends PrimaryKeyEntity {
     @Column(name = "looking_for_work")
     private Boolean isLookingForWork;
     private String description;
-    @OneToMany
-    @JoinColumn(name = "owner_id")
+    @OneToMany(mappedBy = "owner")
     private List<IntellectualProperty> ownedProperty;
     @ManyToMany
     @JoinTable(

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +30,6 @@ public class PropertyController {
         ModelAndView modelAndView = new ModelAndView("property");
         AddIntellectualPropertyDto property = new AddIntellectualPropertyDto();
         GenreTypeEnum[] genres = GenreTypeEnum.values();
-        property.setAuthor((UserDto) request.getSession().getAttribute("session"));
         modelAndView.addObject("property", property);
         modelAndView.addObject("genres", genres);
         return modelAndView;
@@ -38,10 +38,22 @@ public class PropertyController {
     @PostMapping
     public ModelAndView addProperty(
         @RequestBody @ModelAttribute("property") @Valid AddIntellectualPropertyDto property,
-        @RequestParam("file") MultipartFile file
+        @RequestParam("file") MultipartFile file,
+        HttpServletRequest request,
+        BindingResult bindingResult
     ) throws IOException {
+        if(bindingResult.hasErrors()) {
+            return new ModelAndView("property");
+        }
+        property.setAuthor((UserDto) request.getSession().getAttribute("session"));
         property.getIntellectualPropertyDto().setContent(file.getBytes());
         propertyService.addProperty(property);
         return new ModelAndView("redirect:/index");
+    }
+
+    @PostMapping("/fucking_test")
+    public ModelAndView test(@RequestParam("file") MultipartFile file) {
+        int b = 2 + 2;
+        return new ModelAndView("redirect:");
     }
 }

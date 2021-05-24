@@ -27,8 +27,8 @@ import project.dao.impl.*;
 import project.dto.UserDto;
 import project.service.*;
 import project.service.impl.*;
-import project.support.mapper.AddIntellectualPropertyMapper;
-import project.support.mapper.AddIntellectualPropertyMapperImpl;
+import project.support.mapper.IntellectualPropertyMapper;
+import project.support.mapper.IntellectualPropertyMapperImpl;
 import project.support.mapper.UserMapper;
 import project.support.mapper.UserMapperImpl;
 
@@ -150,8 +150,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public AddIntellectualPropertyMapper addIntellectualPropertyMapper() {
-        return new AddIntellectualPropertyMapperImpl();
+    public IntellectualPropertyMapper addIntellectualPropertyMapper() {
+        return new IntellectualPropertyMapperImpl();
     }
 
     @Bean
@@ -179,7 +179,7 @@ public class BeanConfig {
     public MultipartResolver multipartResolver() {
         org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver =
             new org.springframework.web.multipart.commons.CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(100000);
+        multipartResolver.setMaxUploadSize(100000000);
         return multipartResolver;
     }
 }

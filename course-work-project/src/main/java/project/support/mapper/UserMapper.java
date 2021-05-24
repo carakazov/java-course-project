@@ -1,5 +1,7 @@
 package project.support.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import project.dto.RegistrationDto;
@@ -27,4 +29,6 @@ public interface UserMapper {
     @Mapping(target = "portfolio", source = "source.portfolio.portfolio")
     @Mapping(target = "description", source = "source.user.description")
     UserDto fromUser(UserMappingDto source);
+
+    List<UserDto> fromUser(List<UserMappingDto> source);
 }

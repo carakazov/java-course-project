@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByLogin(String login) {
+        User user = userDao.getByLogin(login);
         return userDao.getByLogin(login);
     }
 

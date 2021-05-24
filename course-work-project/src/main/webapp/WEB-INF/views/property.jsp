@@ -17,7 +17,6 @@
 <body>
 <form:form action="/property" method="post"
            modelAttribute="property" enctype="multipart/form-data">
-    <form:hidden path="author" value="${property.author}"/>
     <div>
         <label>Title: </label>
         <form:input path="intellectualPropertyDto.attributes.title"/>
@@ -31,6 +30,7 @@
         <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable" label="Payable"/>
         <label>If content isn't free input price</label>
         <form:input path="intellectualPropertyDto.attributes.price"/>
+        <form:errors path="intellectualPropertyDto.attributes.price"/>
     </div>
     <div>
         <label>Choose content type</label>
@@ -43,13 +43,16 @@
         <label>Choose genres: </label>
         <form:checkboxes path="intellectualPropertyDto.attributes.genres" items="${genres}"/>
     </div>
+
     <div>
         <label>Load your content here:</label>
         <input type="file" name="file">
     </div>
+
     <div>
         <button type="submit" class="button">Add</button>
     </div>
+
 </form:form>
 </body>
 </html>

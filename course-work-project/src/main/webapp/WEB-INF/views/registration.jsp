@@ -12,7 +12,7 @@
     <h1>Registration</h1>
     <label>Input your data here:</label>
 </div>
-<div class="form-block">
+<div>
     <form:form method="post" action="${pageContext.request.contextPath}/createUser"
                modelAttribute="registrationDto">
         <div>
