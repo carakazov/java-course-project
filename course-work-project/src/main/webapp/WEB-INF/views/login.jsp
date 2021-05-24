@@ -11,14 +11,26 @@
     <title>Reel Deer</title>
     <style>
         <%@include file="css/skeleton.css"%>
+        div{
+            margin: 20px;
+        }
+        h1{
+            text-align: center;
+            margin-left: 40%;
+            margin-right: 40%;
+            margin-top: 5%;
+        }
+        input[type="text"],input[type="password"]{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-<h1 class="h1-center">Welcome!</h1>
-<form action="${pageContext.request.contextPath}/login" method="post" class="from-center"/>
-<div>
+<h1>Welcome!</h1>
+<form action="${pageContext.request.contextPath}/login" method="post" class="from-center">
+<div >
     <label>
-        <input type="text" name="login" placeholder="Login"/>
+        <input type="text" name="login" placeholder="Login" />
     </label>
 </div>
 <div>
@@ -31,10 +43,13 @@
     <button type="submit" class="button-primary">Submit</button>
   </label>
 </div>
-<span class="error-message">${error}</span>
-<br>
-<label class="login-label-link">Not a user? <a href="${pageContext.request.contextPath}/registration">Become now!</a>
-</label>
+<div>
+    <span class="error-message">${error}</span>
+</div>
+<div>
+    <label class="login-label-link">Not a user? <a href="${pageContext.request.contextPath}/registration">Become now!</a>
+    </label>
+</div>
 </form>
 </body>
 </html>
