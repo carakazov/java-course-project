@@ -219,6 +219,7 @@ body {
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222;
+  background: aliceblue;
 }
 
 
@@ -650,6 +651,7 @@ there.
     min-width: 200px;
     max-width: 400px;
     height: auto;
+    background: #fdfeff;
 }
 
 .description-block {
@@ -658,5 +660,56 @@ there.
     border-radius: 5px;
     width: 300px;
     height: 500px;
+}
+
+/* Добавлено --------------------------------------------------------------------- */
+/* Хедеровское */
+header {
+  display: table;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em 5%;
+  background: steelblue;
+  text-align: justify;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+header nav,
+header div {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+  height: 5.5em;
+}
+header nav {
+  text-align: right;
+}
+@media screen and (max-width: 720px){
+  header {
+    height: auto;
+  }
+
+  header > div,
+  header > div h1,
+  header nav {
+    height: auto;
+    width: auto;
+    display: block;
+    text-align: center;
+  }
+}
+
+header div h1 {
+  color: white;
+  margin-bottom: 0;
+}
+
+header nav a {
+  padding: 0 0.6em;
+  white-space: nowrap;
+  color: white;
+  font-size: 2.5rem;
 }
 
