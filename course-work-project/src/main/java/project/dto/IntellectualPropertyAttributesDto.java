@@ -15,14 +15,13 @@ import project.support.validation.annotations.PriceValidation;
 @Data
 @PriceValidation
 public class IntellectualPropertyAttributesDto {
-    @NotBlank
+    @NotBlank(message = "It is required field")
     private String title;
-    @NotEmpty
+    @NotEmpty(message = "It is required field")
     private List<GenreTypeEnum> genres;
-    @NotNull
+    @NotNull(message = "It is required field")
     private AccessTypeEnum accessType;
-    @NotNull
+    @NotNull(message = "It is required field")
     private ContentTypeEnum contentType;
-    @NotNull
     private BigDecimal price = BigDecimal.ZERO;
 }

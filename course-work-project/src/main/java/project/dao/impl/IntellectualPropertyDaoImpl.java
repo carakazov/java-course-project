@@ -30,4 +30,21 @@ public class IntellectualPropertyDaoImpl implements IntellectualPropertyDao {
         return (List<IntellectualProperty>) entityManager.createQuery("SELECT ip FROM intellectual_property ip")
             .getResultList();
     }
+
+    @Override
+    public List<IntellectualProperty> getAllUnapproved() {
+        return (List<IntellectualProperty>) entityManager.createQuery("SELECT ip FROM intellectual_property ip " +
+            "WHERE ip.approved = false").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void approve(int id) {
+        IntellectualProperty property = (IntellectualProperty) entityManager.createQuery("SELECT ip " +
+            "FROM intellectual_property ip WHERE ip.id = :id")
+            .setParameter("id", id)
+            .getSingleResult();
+        property.setApproved(true);
+        entityManager.merge(property);
+    }
 }

@@ -20,7 +20,10 @@ public class PriceValidationValidator implements
         IntellectualPropertyAttributesDto intellectualPropertyAttributesDto,
         ConstraintValidatorContext constraintValidatorContext
     ) {
-        return intellectualPropertyAttributesDto.getAccessType().equals(AccessTypeEnum.free) &&
-            intellectualPropertyAttributesDto.getPrice().equals(BigDecimal.ZERO);
+        if(intellectualPropertyAttributesDto.getAccessType().equals(AccessTypeEnum.free)) {
+            return intellectualPropertyAttributesDto.getPrice().equals(BigDecimal.ZERO);
+        } else {
+            return !intellectualPropertyAttributesDto.getPrice().equals(BigDecimal.ZERO);
+        }
     }
 }
