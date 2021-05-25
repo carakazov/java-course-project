@@ -15,6 +15,13 @@
     </style>
 </head>
 <body>
+<header>
+    <div><h1>REEL DIR</h1></div>
+    <nav>
+        <a href="/users/${session.login}">User</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
 <form:form action="/property" method="post"
            modelAttribute="property" enctype="multipart/form-data">
     <div>
