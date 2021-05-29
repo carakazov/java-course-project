@@ -9,7 +9,9 @@ public interface IntellectualPropertyDao {
 
     List<IntellectualProperty> getAll();
 
-    List<IntellectualProperty> getAllUnapproved();
+    List<IntellectualProperty> getAllUnchecked();
 
     void approve(int id);
+
+    void decline(int id);
 }

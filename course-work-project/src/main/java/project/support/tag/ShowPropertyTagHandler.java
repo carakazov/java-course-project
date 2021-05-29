@@ -22,7 +22,8 @@ public class ShowPropertyTagHandler extends SimpleTagSupport {
         out.write("<div class=\"composition-block\">");
         switch(property.getAttributes().getContentType()) {
             case picture:
-                out.write("<img src=\"data:image/png;base64, " + base64 + "\"/>");
+                out.write("<img src=\"data:image/png;base64, " + base64 + "\"" +
+                    "height=\"500\" width=\"500\"/>");
                 break;
             case audio:
                 out.write("<audio controls src=\"data:audio/mp3;base64, " + base64 + "\">");

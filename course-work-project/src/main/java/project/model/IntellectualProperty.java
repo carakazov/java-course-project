@@ -37,7 +37,7 @@ public class IntellectualProperty extends PrimaryKeyEntity {
     @Enumerated(EnumType.STRING)
     private AccessTypeEnum accessType;
     private byte[] content;
-    private boolean approved;
+    private Boolean approved;
     @Column(name = "upload_date")
     @CreatedDate
     private LocalDateTime uploadDate;
