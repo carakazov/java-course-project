@@ -3,7 +3,6 @@ package project.controller;
 import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class PropertyController {
     private UserDto currentUserDto;
 
     @GetMapping
-    public ModelAndView addForm(HttpServletRequest request) {
+    public ModelAndView addForm() {
         ModelAndView modelAndView = new ModelAndView("property");
         AddIntellectualPropertyDto property = new AddIntellectualPropertyDto();
         GenreTypeEnum[] genres = GenreTypeEnum.values();
@@ -35,25 +34,19 @@ public class PropertyController {
         return modelAndView;
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ModelAndView addProperty(
-        @RequestBody @ModelAttribute("property") @Valid AddIntellectualPropertyDto property,
+        @RequestBody @ModelAttribute("property") AddIntellectualPropertyDto property,
         @RequestParam("file") MultipartFile file,
         HttpServletRequest request,
-        BindingResult bindingResult
+        BindingResult result
     ) throws IOException {
-        if(bindingResult.hasErrors()) {
+        if(result.hasErrors()) {
             return new ModelAndView("property");
         }
         property.setAuthor((UserDto) request.getSession().getAttribute("session"));
         property.getIntellectualPropertyDto().setContent(file.getBytes());
         propertyService.addProperty(property);
-        return new ModelAndView("redirect:/index");
-    }
-
-    @PostMapping("/fucking_test")
-    public ModelAndView test(@RequestParam("file") MultipartFile file) {
-        int b = 2 + 2;
-        return new ModelAndView("redirect:");
+        return new ModelAndView("index");
     }
 }

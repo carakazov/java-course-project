@@ -33,7 +33,6 @@
                 Login:
             </label>
             <form:input type="text" path="identityInfoDto.login" cssClass="my-input-form"/>
-            <form:errors path="identityInfoDto.login"/>
         </div>
         <div>
             <label>
@@ -47,21 +46,21 @@
                 Name:
             </label>
             <form:input type="text" path="personalInfoDto.name"/>
-                <form:errors path="personalInfoDto.name"/>
+            <form:errors path="personalInfoDto.name"/>
         </div>
         <div>
             <label>
                 Surname:
             </label>
             <form:input type="text" path="personalInfoDto.surname"/>
-                <form:errors path="personalInfoDto.surname"/>
+            <form:errors path="personalInfoDto.surname"/>
         </div>
         <div>
             <label>
                 Middle name:
             </label>
             <form:input type="text" path="personalInfoDto.middleName"/>
-                <form:errors path="personalInfoDto.middleName"/>
+            <form:errors path="personalInfoDto.middleName"/>
             <small>Optional</small>
         </div>
         <div>

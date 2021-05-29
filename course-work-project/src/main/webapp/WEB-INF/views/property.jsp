@@ -22,7 +22,7 @@
         <a href="/logout">Logout</a>
     </nav>
 </header>
-<form:form action="/property" method="post"
+<form:form action="/property/add" method="post"
            modelAttribute="property" enctype="multipart/form-data">
     <div>
         <label>Title: </label>
@@ -35,9 +35,9 @@
         <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="subscription"
                           label="Subscription"/>
         <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable" label="Payable"/>
+        <form:errors path="intellectualPropertyDto.attributes.accessType"/>
         <label>If content isn't free input price</label>
         <form:input path="intellectualPropertyDto.attributes.price"/>
-        <form:errors path="intellectualPropertyDto.attributes.price"/>
     </div>
     <div>
         <label>Choose content type</label>
@@ -45,10 +45,12 @@
         <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture" label="Photo"/>
         <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video" label="Movie"/>
         <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="audio" label="Music"/>
+        <form:errors path="intellectualPropertyDto.attributes.contentType"/>
     </div>
     <div>
         <label>Choose genres: </label>
         <form:checkboxes path="intellectualPropertyDto.attributes.genres" items="${genres}"/>
+        <form:errors path="intellectualPropertyDto.attributes.genres"/>
     </div>
 
     <div>

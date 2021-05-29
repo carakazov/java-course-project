@@ -7,8 +7,9 @@ import lombok.Data;
 
 @Data
 public class IntellectualPropertyDto {
-    @NotNull
+    @NotNull(message = "It is required field")
     private byte[] content;
+    @NotNull
     @Valid
     private IntellectualPropertyAttributesDto attributes;
 }

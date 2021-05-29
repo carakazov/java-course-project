@@ -20,6 +20,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import project.controller.LoginController;
+import project.controller.ModeratorController;
 import project.controller.PropertyController;
 import project.controller.UserController;
 import project.dao.*;
@@ -181,5 +182,20 @@ public class BeanConfig {
             new org.springframework.web.multipart.commons.CommonsMultipartResolver();
         multipartResolver.setMaxUploadSize(100000000);
         return multipartResolver;
+    }
+
+    @Bean
+    public ModeratorService moderatorService() {
+        return new ModeratorServiceImpl(
+            intellectualPropertyDao(),
+            addIntellectualPropertyMapper()
+        );
+    }
+
+    @Bean
+    public ModeratorController moderatorController() {
+        return new ModeratorController(
+            moderatorService()
+        );
     }
 }
