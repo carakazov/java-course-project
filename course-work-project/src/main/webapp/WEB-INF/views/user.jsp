@@ -9,6 +9,13 @@
     <title>Registration</title>
 </head>
 <body>
+<header>
+    <div><h1>REEL DIR</h1></div>
+    <nav>
+        <a href="/users/${session.login}">User</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
 <div>
     <label>${user.personalInfo.name}, ${user.personalInfo.surname}, ${user.personalInfo.middleName}</label>
 </div>
