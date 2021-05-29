@@ -8,23 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Reel Deer</title>
-  <style>
-    <%@include file="css/skeleton.css"%>
-  </style>
+    <title>Reel Deer</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
 <h1 class="h1-center">Welcome!</h1>
-<form action="${pageContext.request.contextPath}/login" method="post"/>
+<form action="${pageContext.request.contextPath}/login" method="post" class="from-center"/>
 <div>
-  <label>
-    <input type="text" name="login" placeholder="Login"/>
-  </label>
+    <label>
+        <input type="text" name="login" placeholder="Login"/>
+    </label>
 </div>
 <div>
-  <label>
-    <input type="password" name="password" placeholder="Password"/>
-  </label>
+    <label>
+        <input type="password" name="password" placeholder="Password"/>
+    </label>
 </div>
 <div>
   <label>
