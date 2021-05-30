@@ -33,6 +33,7 @@
                 Login:
             </label>
             <form:input type="text" path="identityInfoDto.login" cssClass="my-input-form"/>
+            <form:errors path="identityInfoDto.login"/>
         </div>
         <div>
             <label>

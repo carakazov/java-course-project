@@ -31,20 +31,19 @@
     </div>
     <div>
         <label>Choose content type: </label>
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="free" label="Free"/>
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="subscription"
-                          label="Subscription"/>
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable" label="Payable"/>
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="free"/> Free
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="subscription"/> Subscription
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable"/> Payable
         <form:errors path="intellectualPropertyDto.attributes.accessType"/>
         <label>If content isn't free input price</label>
         <form:input path="intellectualPropertyDto.attributes.price"/>
     </div>
     <div>
         <label>Choose content type</label>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="text" label="Text"/>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture" label="Photo"/>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video" label="Movie"/>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="audio" label="Music"/>
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="text"/> Text
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture"/> Photo
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video"/> Movie
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="audio"/> Music
         <form:errors path="intellectualPropertyDto.attributes.contentType"/>
     </div>
     <div>

@@ -5,7 +5,10 @@ import java.util.List;
 import project.dto.ShowIntellectualPropertyDto;
 
 public interface ModeratorService {
-    List<ShowIntellectualPropertyDto> getAllUnapproved();
+    List<ShowIntellectualPropertyDto> getAllUnchecked();
 
     void approve(int propertyId);
+
+    void decline(int propertyId);
 }
+

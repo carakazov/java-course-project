@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import project.dto.AddIntellectualPropertyDto;
+import project.dto.ShowIntellectualPropertyDetailsDto;
 import project.dto.UserDto;
 import project.model.GenreTypeEnum;
 import project.service.PropertyService;
@@ -48,5 +49,16 @@ public class PropertyController {
         property.getIntellectualPropertyDto().setContent(file.getBytes());
         propertyService.addProperty(property);
         return new ModelAndView("index");
+    }
+
+    @GetMapping("/details/{id}")
+    public ModelAndView details(@PathVariable("id") int id, HttpServletRequest request) {
+        ShowIntellectualPropertyDetailsDto property = propertyService.getForDetails(
+            id,
+            ((UserDto) request.getSession().getAttribute("session")).getLogin()
+        );
+        ModelAndView modelAndView = new ModelAndView("details");
+        modelAndView.addObject("item", property);
+        return modelAndView;
     }
 }

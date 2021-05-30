@@ -16,12 +16,17 @@ public class ModeratorServiceImpl implements ModeratorService {
 
     @Override
     @Transactional
-    public List<ShowIntellectualPropertyDto> getAllUnapproved() {
-        return mapper.toShowDto(propertyDao.getAllUnapproved());
+    public List<ShowIntellectualPropertyDto> getAllUnchecked() {
+        return mapper.toShowDtoForModeration(propertyDao.getAllUnchecked());
     }
 
     @Override
     public void approve(int propertyId) {
         propertyDao.approve(propertyId);
+    }
+
+    @Override
+    public void decline(int propertyId) {
+        propertyDao.decline(propertyId);
     }
 }

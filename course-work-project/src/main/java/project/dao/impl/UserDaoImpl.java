@@ -7,12 +7,15 @@ import javax.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import project.dao.AccessBuyerProfileDao;
 import project.dao.UserDao;
+import project.model.IntellectualProperty;
 import project.model.User;
 
 @Repository
 @RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
+    private final AccessBuyerProfileDao accessBuyerProfileDao;
     @PersistenceContext
     private EntityManager entityManager;
     @Override
@@ -30,6 +33,14 @@ public class UserDaoImpl implements UserDao {
             .setParameter("login", item.getLogin())
             .executeUpdate();
         return entityManager.find(User.class, item.getId());
+    }
+
+    @Override
+    public void addAuthorship(List<IntellectualProperty> property, String login) {
+        User user = getByLogin(login);
+        user.getCreatedWorks().addAll(property);
+        entityManager.merge(user);
+        property.forEach(item -> accessBuyerProfileDao.addForeverAccessAccount(user, item));
     }
 
     @Override

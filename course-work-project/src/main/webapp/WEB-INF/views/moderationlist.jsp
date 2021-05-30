@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="mytag" uri="mytag/show" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: carak
@@ -11,11 +12,20 @@
 <html>
 <head>
     <title>Moderator page</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
 <h1>New compositions list</h1>
 <c:forEach items="${items}" var="item">
-    <mytag:showTag property="${item.property}"/>
+    <div class="composition-block">
+        <mytag:showTag property="${item.property}"/>
+        <div class="moderation-console">
+            <a href="/approve/${item.propertyId}" class="button">Approve</a>
+            <a href="/decline/${item.propertyId}" class="button">Decline</a>
+        </div>
+    </div>
 </c:forEach>
 </body>
 </html>
