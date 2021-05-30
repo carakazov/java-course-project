@@ -11,6 +11,7 @@ import project.model.Genre;
 import project.model.GenreTypeEnum;
 import project.model.IntellectualProperty;
 import project.support.mapper.dto.AddIntellectualPropertyMappingDto;
+import project.support.mapper.dto.ShowIntellectualPropertyMappingDto;
 
 @Mapper(config = MapperConfig.class, uses = {UserMapper.class})
 public interface IntellectualPropertyMapper {
@@ -28,9 +29,20 @@ public interface IntellectualPropertyMapper {
     @Mapping(target = "property.attributes.genres", source = "genres", qualifiedByName = "genreEnumMapper")
     @Mapping(target = "property.attributes.accessType", source = "accessType")
     @Mapping(target = "property.attributes.contentType", source = "contentType")
-    ShowIntellectualPropertyDto toShowDto(IntellectualProperty source);
+    ShowIntellectualPropertyDto toShowDtoForModeration(IntellectualProperty source);
 
-    List<ShowIntellectualPropertyDto> toShowDto(List<IntellectualProperty> source);
+    List<ShowIntellectualPropertyDto> toShowDtoForModeration(List<IntellectualProperty> source);
+
+    @Mapping(target = "propertyId", source = "source.property.id")
+    @Mapping(target = "property.content", source = "property.content")
+    @Mapping(target = "property.attributes.title", source = "property.title")
+    @Mapping(target = "property.attributes.genres", source = "property.genres", qualifiedByName = "genreEnumMapper")
+    @Mapping(target = "property.attributes.accessType", source = "property.accessType")
+    @Mapping(target = "property.attributes.contentType", source = "property.contentType")
+    @Mapping(target = "rating", source = "property.rating")
+    ShowIntellectualPropertyDto toShowDto(ShowIntellectualPropertyMappingDto source);
+
+    List<ShowIntellectualPropertyDto> toShowDto(List<ShowIntellectualPropertyMappingDto> source);
 
     @Named("genreEnumMapper")
     default List<GenreTypeEnum> mapGenreEnum(List<Genre> value) {

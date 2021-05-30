@@ -19,7 +19,7 @@ public class ShowPropertyTagHandler extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         JspWriter out = getJspContext().getOut();
         String base64 = Base64.getEncoder().encodeToString(property.getContent());
-        out.write("<div class=\"composition-block\">");
+        out.write("<div>");
         switch(property.getAttributes().getContentType()) {
             case picture:
                 out.write("<img src=\"data:image/png;base64, " + base64 + "\"" +

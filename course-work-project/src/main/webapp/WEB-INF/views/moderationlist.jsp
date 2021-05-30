@@ -19,10 +19,12 @@
 <body>
 <h1>New compositions list</h1>
 <c:forEach items="${items}" var="item">
-    <mytag:showTag property="${item.property}"/>
-    <div class="moderation-console">
-        <a href="/approve/${item.propertyId}" class="button">Approve</a>
-        <a href="/decline/${item.propertyId}" class="button">Decline</a>
+    <div class="composition-block">
+        <mytag:showTag property="${item.property}"/>
+        <div class="moderation-console">
+            <a href="/approve/${item.propertyId}" class="button">Approve</a>
+            <a href="/decline/${item.propertyId}" class="button">Decline</a>
+        </div>
     </div>
 </c:forEach>
 </body>

@@ -40,4 +40,7 @@ public class User extends PrimaryKeyEntity {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<AccessBuyerProfile> profiles;
 }

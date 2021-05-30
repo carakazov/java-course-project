@@ -2,6 +2,7 @@ package project.controller;
 
 
 import java.security.Principal;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -13,7 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.dto.RegistrationDto;
+import project.dto.ShowIntellectualPropertyDto;
 import project.dto.UserDto;
+import project.service.PropertyService;
 import project.service.RegistrationService;
 import project.service.RoleService;
 import project.service.UserService;
@@ -27,6 +30,7 @@ public class LoginController {
     private final RegistrationService registrationService;
     private final RoleService roleService;
     private final UserService userService;
+    private final PropertyService propertyService;
     @Resource(name = "currentUserDto")
     private UserDto currentUserDto;
 
@@ -42,6 +46,8 @@ public class LoginController {
     @GetMapping
     public ModelAndView index(Principal principal, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("index");
+        List<ShowIntellectualPropertyDto> property = propertyService.getAllForIndex();
+        modelAndView.addObject("list", property);
         if(principal != null && !currentUserDto.isEstablished()) {
             currentUserDto = userService.getUserDto(principal.getName());
             currentUserDto.setEstablished(true);

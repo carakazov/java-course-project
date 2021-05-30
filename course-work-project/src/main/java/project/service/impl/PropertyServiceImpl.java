@@ -1,21 +1,26 @@
 package project.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.GenreDao;
 import project.dao.IntellectualPropertyDao;
+import project.dao.PortfolioDao;
 import project.dto.AddIntellectualPropertyDto;
-import project.model.Genre;
-import project.model.IntellectualProperty;
-import project.model.User;
+import project.dto.ShowIntellectualPropertyDetailsDto;
+import project.dto.ShowIntellectualPropertyDto;
+import project.model.*;
 import project.service.PropertyService;
 import project.service.UserService;
 import project.support.mapper.IntellectualPropertyMapper;
 import project.support.mapper.dto.AddIntellectualPropertyMappingDto;
+import project.support.mapper.dto.ShowIntellectualPropertyMappingDto;
+import project.support.mapper.dto.UserMappingDto;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +28,8 @@ public class PropertyServiceImpl implements PropertyService {
     private final IntellectualPropertyDao propertyDao;
     private final GenreDao genreDao;
     private final UserService userService;
-    private final IntellectualPropertyMapper addPropertyMapper;
+    private final IntellectualPropertyMapper propertyMapper;
+    private final PortfolioDao portfolioDao;
 
     @Override
     @Transactional
@@ -31,7 +37,7 @@ public class PropertyServiceImpl implements PropertyService {
         User owner = userService.getUserByLogin(propertyDto.getAuthor().getLogin());
         List<Genre> genres = genreDao.getGenres(propertyDto.getIntellectualPropertyDto().getAttributes().getGenres());
         IntellectualProperty property =
-            addPropertyMapper.fromAddDto(
+            propertyMapper.fromAddDto(
                 new AddIntellectualPropertyMappingDto(
                     propertyDto.getIntellectualPropertyDto(),
                     owner,
@@ -39,5 +45,69 @@ public class PropertyServiceImpl implements PropertyService {
                     genres
                 ));
         propertyDao.addProperty(property);
+    }
+
+    @Override
+    @Transactional
+    public List<ShowIntellectualPropertyDto> getAllForIndex() {
+        List<IntellectualProperty> property = propertyDao.getAll();
+        List<ShowIntellectualPropertyMappingDto> mappingList = new ArrayList<>();
+        property.forEach(item -> mappingList.add(showIntellectualPropertyMappingDto(item)));
+        return propertyMapper.toShowDto(mappingList);
+    }
+
+    @Override
+    @Transactional
+    public ShowIntellectualPropertyDetailsDto getForDetails(int id, String login) {
+        IntellectualProperty propertyEntity = propertyDao.getById(id);
+        ShowIntellectualPropertyDto propertyDto = propertyMapper
+            .toShowDto(showIntellectualPropertyMappingDto(propertyEntity));
+        User user = userService.getUserByLogin(login);
+        ShowIntellectualPropertyDetailsDto details = new ShowIntellectualPropertyDetailsDto();
+        details.setProperty(propertyDto);
+        if(!propertyEntity.getAccessType().equals(AccessTypeEnum.free)) {
+            if(propertyEntity.getProfiles().stream().map(AccessBuyerProfile::getUser)
+                .collect(Collectors.toList()).contains(user)) {
+                details.setAvailable(true);
+                AccessBuyerProfile profile = propertyEntity.getProfiles().stream().filter(
+                    item -> item.getUser().equals(user)
+                ).findFirst().get();
+                details.setWatched(profile.getWatched())
+                    .setForever(profile.getBoughtForever());
+            } else {
+                details.setAvailable(false)
+                    .setForever(false)
+                    .setWatched(false);
+            }
+        } else {
+            details.setAvailable(true);
+            details.setForever(true);
+        }
+        return details;
+    }
+
+    @Override
+    public ShowIntellectualPropertyDetailsDto getFreeComposition(int id) {
+        return null;
+    }
+
+    private ShowIntellectualPropertyMappingDto showIntellectualPropertyMappingDto(IntellectualProperty property) {
+        return new ShowIntellectualPropertyMappingDto(
+            property,
+            new UserMappingDto(
+                property.getOwner(),
+                portfolioDao.findPortfolioOfUser(property.getOwner())
+            ),
+            getMappingDtoFromAuthors(property.getAuthors())
+        );
+    }
+
+    private List<UserMappingDto> getMappingDtoFromAuthors(List<User> authors) {
+        return authors.stream()
+            .map(item -> new UserMappingDto(
+                item,
+                portfolioDao.findPortfolioOfUser(item)
+            ))
+            .collect(Collectors.toList());
     }
 }

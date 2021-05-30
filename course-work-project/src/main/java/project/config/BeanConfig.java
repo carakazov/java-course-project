@@ -68,7 +68,8 @@ public class BeanConfig {
         return new LoginController(
             registrationService(),
             roleService(),
-            userService()
+            userService(),
+            propertyService()
         );
     }
 
@@ -81,7 +82,9 @@ public class BeanConfig {
 
     @Bean
     public UserDao userDao() {
-        return new UserDaoImpl();
+        return new UserDaoImpl(
+            accessBuyerProfileDao()
+        );
     }
 
     @Bean
@@ -157,7 +160,10 @@ public class BeanConfig {
 
     @Bean
     public IntellectualPropertyDao intellectualPropertyDao() {
-        return new IntellectualPropertyDaoImpl();
+        return new IntellectualPropertyDaoImpl(
+            userDao(),
+            accessBuyerProfileDao()
+        );
     }
 
     @Bean
@@ -166,7 +172,8 @@ public class BeanConfig {
             intellectualPropertyDao(),
             genreDao(),
             userService(),
-            addIntellectualPropertyMapper()
+            addIntellectualPropertyMapper(),
+            portfolioDao()
         );
     }
 
@@ -197,5 +204,10 @@ public class BeanConfig {
         return new ModeratorController(
             moderatorService()
         );
+    }
+
+    @Bean
+    public AccessBuyerProfileDao accessBuyerProfileDao() {
+        return new AccessBuyerProfileDaoImpl();
     }
 }

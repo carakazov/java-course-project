@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="mytag/show" %>
 <%--
   Created by IntelliJ IDEA.
   User: carak
@@ -22,7 +24,24 @@
     </nav>
 </header>
 <div>
-    <h1>SERVER IS UNDER ATTACK</h1>
+    <h1>Latest works</h1>
+    <div>
+        <c:forEach items="${list}" var="item">
+            <div class="composition-block">
+                Content: ${item.property.attributes.contentType} <br/>
+                Access type: ${item.property.attributes.accessType} <br/>
+                Authors:
+                <ul>
+                    <c:forEach items="${item.authors}" var="author">
+                        <li>
+                            <a href="/users/${author.login}">${author.personalInfo.name} ${author.personalInfo.surname}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <a href="/property/details/${item.propertyId}">Details</a>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 </body>
 </html>

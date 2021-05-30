@@ -17,7 +17,7 @@ public class ModeratorServiceImpl implements ModeratorService {
     @Override
     @Transactional
     public List<ShowIntellectualPropertyDto> getAllUnchecked() {
-        return mapper.toShowDto(propertyDao.getAllUnchecked());
+        return mapper.toShowDtoForModeration(propertyDao.getAllUnchecked());
     }
 
     @Override

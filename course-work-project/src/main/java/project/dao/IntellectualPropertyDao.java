@@ -5,7 +5,7 @@ import java.util.List;
 import project.model.IntellectualProperty;
 
 public interface IntellectualPropertyDao {
-    IntellectualProperty addProperty(IntellectualProperty intellectualProperty);
+    void addProperty(IntellectualProperty intellectualProperty);
 
     List<IntellectualProperty> getAll();
 
@@ -14,4 +14,6 @@ public interface IntellectualPropertyDao {
     void approve(int id);
 
     void decline(int id);
+
+    IntellectualProperty getById(int id);
 }
