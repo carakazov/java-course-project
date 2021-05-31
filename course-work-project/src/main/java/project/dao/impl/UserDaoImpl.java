@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @Transactional
-    public User update(User item) {
+    public User updateDescription(User item) {
         entityManager.createQuery("UPDATE users user SET user.description = :description " +
             "WHERE user.login = :login")
             .setParameter("description", item.getDescription())
@@ -41,6 +41,11 @@ public class UserDaoImpl implements UserDao {
         user.getCreatedWorks().addAll(property);
         entityManager.merge(user);
         property.forEach(item -> accessBuyerProfileDao.addForeverAccessAccount(user, item));
+    }
+
+    @Override
+    public void update(User user) {
+        entityManager.merge(user);
     }
 
     @Override

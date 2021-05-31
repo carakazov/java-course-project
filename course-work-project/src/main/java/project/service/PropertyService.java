@@ -5,6 +5,7 @@ import java.util.List;
 import project.dto.AddIntellectualPropertyDto;
 import project.dto.ShowIntellectualPropertyDetailsDto;
 import project.dto.ShowIntellectualPropertyDto;
+import project.model.IntellectualProperty;
 
 public interface PropertyService {
     void addProperty(AddIntellectualPropertyDto propertyDto);
@@ -13,5 +14,9 @@ public interface PropertyService {
 
     ShowIntellectualPropertyDetailsDto getForDetails(int id, String login);
 
-    ShowIntellectualPropertyDetailsDto getFreeComposition(int id);
+    IntellectualProperty getById(int id);
+
+    String getOwnerLoginByPropertyId(int propertyId);
+
+    List<IntellectualProperty> getAllPropertyOfUser(String login);
 }

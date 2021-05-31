@@ -12,7 +12,9 @@ public interface UserDao {
 
     User create(User item);
 
-    User update(User item);
+    User updateDescription(User item);
 
     void addAuthorship(List<IntellectualProperty> property, String login);
+
+    void update(User user);
 }

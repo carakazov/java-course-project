@@ -2,6 +2,7 @@ package project.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import project.dao.UserDao;
 import project.dto.UserDto;
 import project.model.Portfolio;
@@ -42,9 +43,18 @@ public class UserServiceImpl implements UserService {
         user.setDescription(description);
         return userMapper.fromUser(
             new UserMappingDto(
-                userDao.update(user),
+                userDao.updateDescription(user),
                 portfolioService.getByUser(user)
             )
         );
+    }
+
+    @Override
+    @Transactional
+    public void subscribe(String bloggerLogin, String subscriberLogin) {
+        User blogger = userDao.getByLogin(bloggerLogin);
+        User subscriber = userDao.getByLogin(subscriberLogin);
+        subscriber.getBloggers().add(blogger);
+        userDao.update(subscriber);
     }
 }

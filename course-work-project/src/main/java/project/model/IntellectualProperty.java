@@ -18,7 +18,7 @@ public class IntellectualProperty extends PrimaryKeyEntity {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
-    @ManyToMany(mappedBy = "createdWorks", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "createdWorks")
     private List<User> authors;
     @ManyToMany
     @JoinTable(

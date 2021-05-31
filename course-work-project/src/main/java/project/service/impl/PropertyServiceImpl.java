@@ -87,8 +87,22 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public ShowIntellectualPropertyDetailsDto getFreeComposition(int id) {
-        return null;
+    public IntellectualProperty getById(int id) {
+        return propertyDao.getById(id);
+    }
+
+    @Override
+    @Transactional
+    public String getOwnerLoginByPropertyId(int propertyId) {
+        return propertyDao.getById(propertyId).getOwner().getLogin();
+    }
+
+    @Override
+    @Transactional
+    public List<IntellectualProperty> getAllPropertyOfUser(String login) {
+        return userService.getUserByLogin(login).getOwnedProperty()
+            .stream().filter(item -> item.getAccessType().equals(AccessTypeEnum.subscription))
+            .collect(Collectors.toList());
     }
 
     private ShowIntellectualPropertyMappingDto showIntellectualPropertyMappingDto(IntellectualProperty property) {

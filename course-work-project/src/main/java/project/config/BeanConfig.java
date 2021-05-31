@@ -76,7 +76,8 @@ public class BeanConfig {
     @Bean
     public UserController userController() {
         return new UserController(
-            userService()
+            userService(),
+            accessBuyerProfileService()
         );
     }
 
@@ -144,7 +145,8 @@ public class BeanConfig {
     @Bean
     public PropertyController propertyController() {
         return new PropertyController(
-            propertyService()
+            propertyService(),
+            accessBuyerProfileService()
         );
     }
 
@@ -209,5 +211,14 @@ public class BeanConfig {
     @Bean
     public AccessBuyerProfileDao accessBuyerProfileDao() {
         return new AccessBuyerProfileDaoImpl();
+    }
+
+    @Bean
+    public AccessBuyerProfileService accessBuyerProfileService() {
+        return new AccessBuyerProfileServiceImpl(
+            userService(),
+            propertyService(),
+            accessBuyerProfileDao()
+        );
     }
 }
