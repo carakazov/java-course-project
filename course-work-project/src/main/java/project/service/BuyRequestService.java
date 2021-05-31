@@ -1,5 +1,7 @@
 package project.service;
 
-public interface BuyRequestService {
+import project.dto.BuyRequestDto;
 
+public interface BuyRequestService {
+    void addRequest(BuyRequestDto requestDto);
 }

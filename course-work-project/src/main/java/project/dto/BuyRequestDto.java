@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BuyRequestDto {
     private UserDto sender;
-    private IntellectualPropertyDto property;
+    private int propertyId;
     private LocalDateTime sendingDate;
 }
