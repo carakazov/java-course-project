@@ -445,7 +445,7 @@ fieldset {
 
 input[type="checkbox"],
 input[type="radio"] {
-  display: inline;
+  display: inline-block;
 }
 
 label > .label-body {
@@ -726,4 +726,12 @@ header nav a {
   padding-bottom: 5px;
   width: 500px;
 }
+/* ---------------- */
+.center-body {
+  width: 1000px;
+  margin: auto;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+}
+
 
