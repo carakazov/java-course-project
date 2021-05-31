@@ -729,9 +729,11 @@ header nav a {
 /* ---------------- */
 .center-body {
   width: 1000px;
-  margin: auto;
+  margin: 1% auto;
   background: #fdfeff;
   padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
 }
 
 

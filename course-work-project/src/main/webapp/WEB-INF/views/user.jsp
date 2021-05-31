@@ -16,6 +16,7 @@
         <a href="/logout">Logout</a>
     </nav>
 </header>
+<div class="center-body">
 <div>
     <label>${user.personalInfo.name}, ${user.personalInfo.surname}, ${user.personalInfo.middleName}</label>
 </div>
@@ -49,6 +50,7 @@
         </c:if>
     </div>
     <a href="${pageContext.request.contextPath}/property">Add composition</a>
+</div>
 </div>
 </body>
 </html>
