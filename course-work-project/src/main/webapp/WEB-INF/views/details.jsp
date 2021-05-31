@@ -25,10 +25,12 @@
                 Sorry, this content is no acceptable for you now. <br/>
                 To see it you have to:
                 <c:if test="${item.property.property.attributes.accessType == AccessTypeEnum.payable}">
-                    buy it
+                    <a href="${pageContext.request.contextPath}/property/buy?price=${item.property.property.attributes.price}
+                    &propertyId=${item.property.propertyId}&login=${session}">buy it</a>
                 </c:if>
                 <c:if test="${item.property.property.attributes.accessType == AccessTypeEnum.subscription}">
-                    subscribe to this product owner
+                    <a href="/property/subscribe?propertyId=${item.property.propertyId}&subscriberLogin=${session}">
+                        subscribe to this product owner</a>
                 </c:if>
             </label>
         </c:otherwise>

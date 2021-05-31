@@ -10,10 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import project.dto.AddIntellectualPropertyDto;
-import project.dto.ShowIntellectualPropertyDetailsDto;
-import project.dto.UserDto;
+import project.dto.*;
 import project.model.GenreTypeEnum;
+import project.service.AccessBuyerProfileService;
 import project.service.PropertyService;
 
 @RestController
@@ -22,6 +21,7 @@ import project.service.PropertyService;
 @RequestMapping("/property")
 public class PropertyController {
     private final PropertyService propertyService;
+    private final AccessBuyerProfileService accessBuyerProfileService;
     @Resource(name = "currentUserDto")
     private UserDto currentUserDto;
 
@@ -58,7 +58,46 @@ public class PropertyController {
             ((UserDto) request.getSession().getAttribute("session")).getLogin()
         );
         ModelAndView modelAndView = new ModelAndView("details");
+        modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")).getLogin());
         modelAndView.addObject("item", property);
+        return modelAndView;
+    }
+
+    @PostMapping("/buy")
+    public ModelAndView buy(@RequestBody @ModelAttribute("buyPropertyDto") BuyPropertyDto buyProperty) {
+        accessBuyerProfileService.addProfile(buyProperty);
+        return new ModelAndView("redirect:details/" + buyProperty.getPropertyId());
+    }
+
+    @GetMapping("/buy")
+    public ModelAndView getBuyForm(
+        @RequestParam double price, @RequestParam String login,
+        @RequestParam int propertyId
+    ) {
+        ModelAndView modelAndView = new ModelAndView("buyPage");
+        BuyFormDto formData = new BuyFormDto();
+        BuyPropertyDto buyPropertyDto = new BuyPropertyDto();
+        buyPropertyDto.setLogin(login)
+            .setPropertyId(propertyId);
+        formData.setLogin(login)
+            .setPrice(price)
+            .setPropertyId(propertyId);
+        modelAndView.addObject("formData", formData);
+        modelAndView.addObject("buyPropertyDto", buyPropertyDto);
+        return modelAndView;
+    }
+
+    @GetMapping("/subscribe")
+    public ModelAndView getSubscribeForm(
+        @RequestParam String subscriberLogin,
+        @RequestParam int propertyId
+    ) {
+        ModelAndView modelAndView = new ModelAndView("subscribePage");
+        SubscribeDto subscribeDto = new SubscribeDto();
+        subscribeDto.setSubscriberLogin(subscriberLogin)
+            .setBloggerLogin(propertyService.getOwnerLoginByPropertyId(propertyId))
+            .setPropertyId(propertyId);
+        modelAndView.addObject("subscribeDto", subscribeDto);
         return modelAndView;
     }
 }

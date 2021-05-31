@@ -43,4 +43,15 @@ public class User extends PrimaryKeyEntity {
 
     @OneToMany(mappedBy = "user")
     private List<AccessBuyerProfile> profiles;
+
+    @ManyToMany
+    @JoinTable(
+        name = "blogger_subscriber",
+        joinColumns = @JoinColumn(name = "subscriber_id"),
+        inverseJoinColumns = @JoinColumn(name = "blogger_id")
+    )
+    private List<User> bloggers;
+
+    @ManyToMany(mappedBy = "bloggers")
+    private List<User> subscribers;
 }

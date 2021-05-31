@@ -26,4 +26,15 @@ public class AccessBuyerProfileDaoImpl implements AccessBuyerProfileDao {
                 .setWatched(false)
         );
     }
+
+    @Override
+    public void addTemporalAccessAccount(User user, IntellectualProperty property) {
+        manager.merge(
+            new AccessBuyerProfile()
+                .setUser(user)
+                .setProperty(property)
+                .setBoughtForever(false)
+                .setWatched(false)
+        );
+    }
 }

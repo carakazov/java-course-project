@@ -9,4 +9,6 @@ public interface UserService {
     UserDto getUserDto(String login);
 
     UserDto addUserDescription(String login, String description);
+
+    void subscribe(String bloggerLogin, String subscriberLogin);
 }

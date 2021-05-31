@@ -52,6 +52,8 @@ public class LoginController {
             currentUserDto = userService.getUserDto(principal.getName());
             currentUserDto.setEstablished(true);
             request.getSession().setAttribute("session", currentUserDto);
+        } else if(principal == null && currentUserDto.isEstablished()) {
+            currentUserDto.setEstablished(false);
         }
         return modelAndView;
     }

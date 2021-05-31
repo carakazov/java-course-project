@@ -19,8 +19,16 @@
 <header>
     <div><h1>REEL DIR</h1></div>
     <nav>
-        <a href="/users/${session.login}">User</a>
-        <a href="/logout">Logout</a>
+        <c:choose>
+            <c:when test="${session != null}">
+                <a href="/users/${session.login}">User</a>
+                <a href="/logout">Logout</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/login">Login</a>
+            </c:otherwise>
+        </c:choose>
+
     </nav>
 </header>
 <div>
