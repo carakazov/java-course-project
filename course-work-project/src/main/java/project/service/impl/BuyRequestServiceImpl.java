@@ -23,7 +23,7 @@ public class BuyRequestServiceImpl implements BuyRequestService {
     @Transactional
     public void addRequest(BuyRequestDto requestDto) {
         IntellectualProperty property = propertyService.getById(requestDto.getPropertyId());
-        User buyer = userService.getUserByLogin(requestDto.getSender().getLogin());
+        User buyer = userService.getUserByLogin(requestDto.getSender());
         User seller = property.getOwner();
         BuyRequest buyRequest = new BuyRequest()
             .setBuyer(buyer)

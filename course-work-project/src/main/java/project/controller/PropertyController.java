@@ -53,11 +53,13 @@ public class PropertyController {
 
     @GetMapping("/details/{id}")
     public ModelAndView details(@PathVariable("id") int id, HttpServletRequest request) {
+        String login = ((UserDto) request.getSession().getAttribute("session")).getLogin();
         ShowIntellectualPropertyDetailsDto property = propertyService.getForDetails(
             id,
-            ((UserDto) request.getSession().getAttribute("session")).getLogin()
+            login
         );
         BuyRequestDto buyRequestDto = new BuyRequestDto();
+        buyRequestDto.setSender(login);
         ModelAndView modelAndView = new ModelAndView("details");
         modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")).getLogin());
         modelAndView.addObject("item", property);
