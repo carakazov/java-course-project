@@ -1,5 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="mytag" uri="mytag/show" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <%@page import="project.model.AccessTypeEnum" %>
 <%--
   Created by IntelliJ IDEA.
@@ -26,6 +28,22 @@
         <c:when test="${item.available}">
             <h1>${item.property.property.attributes.title}</h1>
             <mytag:showTag property="${item.property.property}"/>
+            <div>
+                <c:choose>
+                    <c:when test="${item.requested}">
+                        <label>Your request sent to owner. Please be patient</label>
+                    </c:when>
+                    <c:otherwise>
+                        <label>Do you want to send buy request?</label>
+                        <form:form method="post" action="/send" modelAttribute="requestDto">
+                            <form:hidden path="sender"/>
+                            <form:hidden path="propertyId"/>
+                            <form:hidden path="sendingDate"/>
+                            <button type="submit">Send request</button>
+                        </form:form>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </c:when>
         <c:otherwise>
             <label>

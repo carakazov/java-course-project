@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.dao.BuyRequestDao;
 import project.dao.GenreDao;
 import project.dao.IntellectualPropertyDao;
 import project.dao.PortfolioDao;
 import project.dto.AddIntellectualPropertyDto;
+import project.dto.ChangeOwnershipDto;
 import project.dto.ShowIntellectualPropertyDetailsDto;
 import project.dto.ShowIntellectualPropertyDto;
 import project.model.*;
@@ -30,6 +32,7 @@ public class PropertyServiceImpl implements PropertyService {
     private final UserService userService;
     private final IntellectualPropertyMapper propertyMapper;
     private final PortfolioDao portfolioDao;
+    private final BuyRequestDao buyRequestDao;
 
     @Override
     @Transactional
@@ -65,6 +68,7 @@ public class PropertyServiceImpl implements PropertyService {
         User user = userService.getUserByLogin(login);
         ShowIntellectualPropertyDetailsDto details = new ShowIntellectualPropertyDetailsDto();
         details.setProperty(propertyDto);
+        details.setRequested(buyRequestDao.checkRequest(user, propertyEntity));
         if(!propertyEntity.getAccessType().equals(AccessTypeEnum.free)) {
             if(propertyEntity.getProfiles().stream().map(AccessBuyerProfile::getUser)
                 .collect(Collectors.toList()).contains(user)) {
@@ -103,6 +107,14 @@ public class PropertyServiceImpl implements PropertyService {
         return userService.getUserByLogin(login).getOwnedProperty()
             .stream().filter(item -> item.getAccessType().equals(AccessTypeEnum.subscription))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void changeOwnership(ChangeOwnershipDto changeOwnershipDto) {
+        IntellectualProperty property = propertyDao.getById(changeOwnershipDto.getPropertyId());
+        property.setOwner(userService.getUserByLogin(changeOwnershipDto.getNewOwnerLogin()));
+        propertyDao.update(property);
     }
 
     private ShowIntellectualPropertyMappingDto showIntellectualPropertyMappingDto(IntellectualProperty property) {

@@ -80,6 +80,11 @@ public class IntellectualPropertyDaoImpl implements IntellectualPropertyDao {
             .getSingleResult();
     }
 
+    @Override
+    public void update(IntellectualProperty intellectualProperty) {
+        entityManager.merge(intellectualProperty);
+    }
+
     private IntellectualProperty findById(int id) {
         return (IntellectualProperty) entityManager.createQuery("SELECT ip " +
             "FROM intellectual_property ip WHERE ip.id = :id")

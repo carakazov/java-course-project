@@ -16,4 +16,6 @@ public interface IntellectualPropertyDao {
     void decline(int id);
 
     IntellectualProperty getById(int id);
+
+    void update(IntellectualProperty intellectualProperty);
 }

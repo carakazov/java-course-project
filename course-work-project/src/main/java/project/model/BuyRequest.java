@@ -8,10 +8,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity(name = "buy_requests")
 @Data
+@Accessors(chain = true)
 public class BuyRequest extends PrimaryKeyEntity {
     @ManyToOne
     @JoinColumn(name = "seller_id")
@@ -29,5 +31,5 @@ public class BuyRequest extends PrimaryKeyEntity {
     @Column(name = "response_date")
     private LocalDateTime responseDate;
 
-    private boolean success;
+    private Boolean success;
 }
