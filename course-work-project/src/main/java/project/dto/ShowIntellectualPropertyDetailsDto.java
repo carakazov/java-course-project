@@ -9,5 +9,6 @@ public class ShowIntellectualPropertyDetailsDto {
     private boolean available;
     private boolean forever;
     private boolean watched;
+    private boolean requested;
     private ShowIntellectualPropertyDto property;
 }

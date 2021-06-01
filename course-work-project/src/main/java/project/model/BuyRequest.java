@@ -31,5 +31,5 @@ public class BuyRequest extends PrimaryKeyEntity {
     @Column(name = "response_date")
     private LocalDateTime responseDate;
 
-    private boolean success;
+    private Boolean success;
 }

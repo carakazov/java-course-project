@@ -46,9 +46,10 @@
                 <form:textarea path="description"/>
                 <button type="submit">Add</button>
             </form:form>
+            <a href="${pageContext.request.contextPath}/requestList">Show all received requests</a>
+            <a href="${pageContext.request.contextPath}/property">Add composition</a>
         </c:if>
     </div>
-    <a href="${pageContext.request.contextPath}/property">Add composition</a>
 </div>
 </body>
 </html>
