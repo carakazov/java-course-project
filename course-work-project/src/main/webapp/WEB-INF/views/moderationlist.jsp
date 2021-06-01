@@ -17,6 +17,14 @@
     </style>
 </head>
 <body>
+<header>
+    <div><h1>REEL DIR</h1></div>
+    <nav>
+        <a href="/users/${session.login}">User</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body"></div>
 <h1>New compositions list</h1>
 <c:forEach items="${items}" var="item">
     <div class="composition-block">
@@ -27,5 +35,6 @@
         </div>
     </div>
 </c:forEach>
+</div>
 </body>
 </html>

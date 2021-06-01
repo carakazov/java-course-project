@@ -12,6 +12,16 @@
     <title>Title</title>
     <style>
         <%@include file="css/skeleton.css"%>
+        label{
+            display: inline;
+        }
+        .margin{
+            margin-bottom: 5px;
+        }
+        .cost{
+            color: #555555;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -22,33 +32,44 @@
         <a href="/logout">Logout</a>
     </nav>
 </header>
-<form:form action="/property/add" method="post"
+<div class="center-body">
+
+        <form:form action="/property/add" method="post"
            modelAttribute="property" enctype="multipart/form-data">
-    <div>
+    <div class="margin">
         <label>Title: </label>
         <form:input path="intellectualPropertyDto.attributes.title"/>
         <form:errors path="intellectualPropertyDto.attributes.title"/>
     </div>
-    <div>
+    <div class="margin">
         <label>Choose content type: </label>
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="free"/> Free
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="subscription"/> Subscription
-        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable"/> Payable
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="free"/>
+        <span>Free</span>
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="subscription"/>
+        <span>Subscription</span>
+        <form:radiobutton path="intellectualPropertyDto.attributes.accessType" value="payable"/>
+        <span>Payable</span>
         <form:errors path="intellectualPropertyDto.attributes.accessType"/>
-        <label>If content isn't free input price</label>
-        <form:input path="intellectualPropertyDto.attributes.price"/>
     </div>
-    <div>
+            <div class="margin">
+                <label class="cost">If content isn't free input price:</label>
+                <form:input path="intellectualPropertyDto.attributes.price"/>
+            </div>
+    <div class="margin">
         <label>Choose content type</label>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="text"/> Text
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture"/> Photo
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video"/> Movie
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="audio"/> Music
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="text"/>
+        <span>Text</span>
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture"/>
+        <span>Photo</span>
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video"/>
+        <span>Movie</span>
+        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="audio"/>
+        <span>Music</span>
         <form:errors path="intellectualPropertyDto.attributes.contentType"/>
     </div>
-    <div>
+    <div class="margin">
         <label>Choose genres: </label>
-        <form:checkboxes path="intellectualPropertyDto.attributes.genres" items="${genres}"/>
+        <form:checkboxes cssStyle="font-weight: normal" path="intellectualPropertyDto.attributes.genres" items="${genres}"/>
         <form:errors path="intellectualPropertyDto.attributes.genres"/>
     </div>
 
@@ -58,9 +79,10 @@
     </div>
 
     <div>
-        <button type="submit" class="button">Add</button>
+        <button type="submit" class="button-primary">Add</button>
     </div>
 
-</form:form>
+    </form:form>
+</div>
 </body>
 </html>

@@ -16,9 +16,7 @@
         }
         h1{
             text-align: center;
-            margin-left: 40%;
-            margin-right: 40%;
-            margin-top: 5%;
+            margin: 5% auto;
         }
         input[type="text"],input[type="password"]{
             width: 100%;

@@ -14,7 +14,14 @@
     <title>Details</title>
 </head>
 <body>
-<div>
+<header>
+    <div><h1>REEL DIR</h1></div>
+    <nav>
+        <a href="/users/${session.login}">User</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
     <c:choose>
         <c:when test="${item.available}">
             <h1>${item.property.property.attributes.title}</h1>

@@ -445,7 +445,7 @@ fieldset {
 
 input[type="checkbox"],
 input[type="radio"] {
-  display: inline;
+  display: inline-block;
 }
 
 label > .label-body {
@@ -645,21 +645,21 @@ there.
     border-style: solid;
     border-color: black;
     border-radius: 5px;
-    margin-left: 38%;
-    margin-right: 38%;
+    margin: 1% auto;
     width: auto;
     min-width: 200px;
-    max-width: 400px;
+    max-width: 350px;
     height: auto;
     background: #fdfeff;
+
 }
 
 .description-block {
     border-style: solid;
-    border-color: black;
-    border-radius: 5px;
-    width: 300px;
-    height: 500px;
+    border-color: gainsboro;
+    border-radius: 2px;
+    width: 400px;
+    height: fit-content;
 }
 
 /* Добавлено --------------------------------------------------------------------- */
@@ -726,4 +726,14 @@ header nav a {
   padding-bottom: 5px;
   width: 500px;
 }
+/* ---------------- */
+.center-body {
+  width: 1000px;
+  margin: 1% auto;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+}
+
 
