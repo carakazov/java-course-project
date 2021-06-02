@@ -277,4 +277,14 @@ public class BeanConfig {
             reviewService()
         );
     }
+
+    @Bean
+    public ProfessionDao professionDao() {
+        return new ProfessionDaoImpl();
+    }
+
+    @Bean
+    public VacancyDao vacancyDao() {
+        return new VacancyDaoImpl();
+    }
 }
