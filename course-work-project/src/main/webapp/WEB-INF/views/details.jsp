@@ -44,6 +44,12 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+            <div>
+                <a href="/review/${item.property.propertyId}">Write review</a>
+            </div>
+            <div>
+                <a href="/list/${item.property.propertyId}">All reviews for this composition</a>
+            </div>
         </c:when>
         <c:otherwise>
             <label>

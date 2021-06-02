@@ -244,4 +244,37 @@ public class BeanConfig {
             propertyService()
         );
     }
+
+    @Bean
+    public ReviewDao reviewDao() {
+        return new ReviewDaoImpl();
+    }
+
+    @Bean
+    public ReviewMapper reviewMapper() {
+        return new ReviewMapperImpl();
+    }
+
+    @Bean
+    public ReviewDetailsMapper reviewDetailsMapper() {
+        return new ReviewDetailsMapperImpl();
+    }
+
+    @Bean
+    public ReviewService reviewService() {
+        return new ReviewServiceImpl(
+            reviewDao(),
+            intellectualPropertyDao(),
+            userService(),
+            reviewMapper(),
+            reviewDetailsMapper()
+        );
+    }
+
+    @Bean
+    public ReviewController reviewController() {
+        return new ReviewController(
+            reviewService()
+        );
+    }
 }

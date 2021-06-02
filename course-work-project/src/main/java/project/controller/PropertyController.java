@@ -64,7 +64,7 @@ public class PropertyController {
         buyRequestDto.setPropertyId(id);
         buyRequestDto.setSendingDate(LocalDateTime.now());
         ModelAndView modelAndView = new ModelAndView("details");
-        modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")).getLogin());
+        modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")));
         modelAndView.addObject("item", property);
         modelAndView.addObject("requestDto", buyRequestDto);
         return modelAndView;
