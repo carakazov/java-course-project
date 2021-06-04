@@ -747,4 +747,17 @@ header nav a:hover {
   border: 1px solid gainsboro;
 }
 
-
+.logo{
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 5rem;
+  line-height: 1.2;
+  letter-spacing: -.1rem;
+  color: white;
+  text-decoration: none;
+}
+.logo:hover{
+  color: white;
+  text-decoration: none;
+}
