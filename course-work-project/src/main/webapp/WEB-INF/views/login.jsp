@@ -14,9 +14,9 @@
         div{
             margin: 20px;
         }
-        h1{
+        h1,h2{
             text-align: center;
-            margin: 5% auto;
+            margin: 2.5% auto;
         }
         input[type="text"],input[type="password"]{
             width: 100%;
@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+<h2>REEL DIR</h2>
 <h1>Welcome!</h1>
 <form action="${pageContext.request.contextPath}/login" method="post" class="from-center">
 <div >

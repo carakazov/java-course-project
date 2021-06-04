@@ -6,13 +6,12 @@
     <style>
         <%@include file="css/skeleton.css"%>
     </style>
-    <title>Registration</title>
+    <title>Account</title>
 </head>
 <body>
 <header>
     <div><h1>REEL DIR</h1></div>
     <nav>
-        <a href="/users/${session.login}">User</a>
         <a href="/logout">Logout</a>
     </nav>
 </header>

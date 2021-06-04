@@ -237,6 +237,10 @@ h1 {
   letter-spacing: -.1rem;
 }
 
+h1,h2:hover{
+  cursor: default;
+}
+
 h2 {
   font-size: 3.6rem;
   line-height: 1.25;
@@ -715,7 +719,6 @@ header nav a {
 }
 
 header nav a:hover {
-  border: 2px solid aliceblue;
   border-radius: 3px;
   background: aliceblue;
   text-decoration: none;

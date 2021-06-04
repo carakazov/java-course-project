@@ -58,7 +58,7 @@ public class PropertyController {
             ((UserDto) request.getSession().getAttribute("session")).getLogin()
         );
         ModelAndView modelAndView = new ModelAndView("details");
-        modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")).getLogin());
+        modelAndView.addObject("session", (request.getSession().getAttribute("session")));
         modelAndView.addObject("item", property);
         return modelAndView;
     }

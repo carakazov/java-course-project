@@ -21,7 +21,7 @@
     <nav>
         <c:choose>
             <c:when test="${session != null}">
-                <a href="/users/${session.login}">User</a>
+                <a href="/users/${session.login}">Account</a>
                 <a href="/logout">Logout</a>
             </c:when>
             <c:otherwise>
@@ -31,7 +31,7 @@
 
     </nav>
 </header>
-<div>
+<div class="center-body">
     <h1>Latest works</h1>
     <div>
         <c:forEach items="${list}" var="item">

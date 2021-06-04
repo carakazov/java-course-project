@@ -20,7 +20,7 @@
 <header>
     <div><h1>REEL DIR</h1></div>
     <nav>
-        <a href="/users/${session.login}">User</a>
+        <a href="/users/${session.login}">Account</a>
         <a href="/logout">Logout</a>
     </nav>
 </header>
