@@ -115,6 +115,8 @@ public class BeanConfig {
             userDao(),
             userMapper(),
             portfolioService()
+
+
         );
     }
 
@@ -286,5 +288,33 @@ public class BeanConfig {
     @Bean
     public VacancyDao vacancyDao() {
         return new VacancyDaoImpl();
+    }
+
+    @Bean
+    public ProfessionService professionService() {
+        return new ProfessionServiceImpl(professionDao());
+    }
+
+    @Bean
+    public VacancyService vacancyService() {
+        return new VacancyServiceImpl(
+            vacancyDao(),
+            professionDao(),
+            userDao(),
+            vacancyMapper()
+        );
+    }
+
+    @Bean
+    public VacancyMapper vacancyMapper() {
+        return new VacancyMapperImpl();
+    }
+
+    @Bean
+    public VacancyController vacancyController() {
+        return new VacancyController(
+            vacancyService(),
+            professionService()
+        );
     }
 }
