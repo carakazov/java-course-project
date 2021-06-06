@@ -15,7 +15,7 @@
     </script>
 </head>
 <body>
-<div>
+<div class="center-body">
     <h1>Subscribe form</h1>
     <form:form modelAttribute="subscribeDto" method="post" action="/subscribe">
         <Label>You are going to subscribe to ${subscribeDto.bloggerLogin}. Are you sure?</Label>
