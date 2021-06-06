@@ -54,4 +54,11 @@ public class UserController {
         request.getSession().setAttribute("session", null);
         return new ModelAndView("redirect:/index");
     }
+
+    @GetMapping("/work")
+    public ModelAndView lookingForWork() {
+        ModelAndView modelAndView = new ModelAndView("userList");
+        modelAndView.addObject("list", userService.getAllLookingForWork());
+        return modelAndView;
+    }
 }

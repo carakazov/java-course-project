@@ -1,5 +1,7 @@
 package project.service;
 
+import java.util.List;
+
 import project.dto.UserDto;
 import project.model.User;
 
@@ -11,4 +13,6 @@ public interface UserService {
     UserDto addUserDescription(String login, String description);
 
     void subscribe(String bloggerLogin, String subscriberLogin);
+
+    List<UserDto> getAllLookingForWork();
 }

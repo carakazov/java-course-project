@@ -17,4 +17,6 @@ public interface UserDao {
     void addAuthorship(List<IntellectualProperty> property, String login);
 
     void update(User user);
+
+    List<User> getAllLookingForWork();
 }

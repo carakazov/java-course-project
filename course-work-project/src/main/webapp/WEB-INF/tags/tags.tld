@@ -14,6 +14,17 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>portfolio</name>
+        <tag-class>project.support.tag.PortfolioTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>portfolioOwner</name>
+            <required>true</required>
+            <type>project.dto.UserDto</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>
 
 

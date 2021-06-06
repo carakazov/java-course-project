@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytags" uri="mytag/show" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +51,22 @@
             <a href="${pageContext.request.contextPath}/requestList">Show all received requests</a> <br>
             <a href="${pageContext.request.contextPath}/property">Add composition</a> <br>
             <a href="${pageContext.request.contextPath}/vacancy">Add new vacancy</a> <br>
-            <a href="${pageContext.request.contextPath}/professions">Looking for job?</a>
+            <a href="${pageContext.request.contextPath}/professions">Looking for job?</a> <br>
+            <a href="${pageContext.request.contextPath}/work">Search for employees</a>
+            <label>Add portfolio</label>
+            <form:form action="/portfolio/add" enctype="multipart/form-data" method="post">
+                <div>
+                    <input type="file" name="portfolio">
+                </div>
+                <div>
+                    <button type="submit" class="button">Add</button>
+                </div>
+            </form:form>
         </c:if>
+        <c:if test="${user.portfolio != null}">
+            <mytags:portfolio portfolioOwner="${user}"/>
+        </c:if>
+
     </div>
 </div>
 </div>

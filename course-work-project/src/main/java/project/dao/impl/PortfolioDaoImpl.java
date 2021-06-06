@@ -4,13 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.PortfolioDao;
 import project.model.Portfolio;
 import project.model.User;
 
-@Service
+@Repository
+@RequiredArgsConstructor
 public class PortfolioDaoImpl implements PortfolioDao {
     @PersistenceContext
     private EntityManager entityManager;
@@ -26,5 +28,11 @@ public class PortfolioDaoImpl implements PortfolioDao {
         } catch(NoResultException e) {
             return null;
         }
+    }
+
+    @Override
+    @Transactional
+    public void add(Portfolio portfolio) {
+        entityManager.merge(portfolio);
     }
 }

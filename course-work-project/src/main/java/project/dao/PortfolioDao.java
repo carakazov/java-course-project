@@ -5,4 +5,6 @@ import project.model.User;
 
 public interface PortfolioDao {
     Portfolio findPortfolioOfUser(User user);
+
+    void add(Portfolio portfolio);
 }

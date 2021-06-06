@@ -1,5 +1,8 @@
 package project.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,5 +59,16 @@ public class UserServiceImpl implements UserService {
         User subscriber = userDao.getByLogin(subscriberLogin);
         subscriber.getBloggers().add(blogger);
         userDao.update(subscriber);
+    }
+
+    @Override
+    public List<UserDto> getAllLookingForWork() {
+        List<User> user = userDao.getAllLookingForWork();
+        List<UserMappingDto> userMappingDtos = new ArrayList<>();
+        user.forEach(item -> userMappingDtos.add(new UserMappingDto(
+            item,
+            portfolioService.getByUser(item)
+        )));
+        return userMapper.fromUser(userMappingDtos);
     }
 }

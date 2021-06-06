@@ -128,7 +128,8 @@ public class BeanConfig {
     @Bean
     public PortfolioService portfolioService() {
         return new PortfolioServiceImpl(
-            portfolioDao()
+            portfolioDao(),
+            userDao()
         );
     }
 
@@ -321,6 +322,13 @@ public class BeanConfig {
         return new VacancyController(
             vacancyService(),
             professionService()
+        );
+    }
+
+    @Bean
+    public PortfolioController portfolioController() {
+        return new PortfolioController(
+            portfolioService()
         );
     }
 }

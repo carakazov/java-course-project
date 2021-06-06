@@ -49,6 +49,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List<User> getAllLookingForWork() {
+        return entityManager.createQuery("SELECT user FROM users user WHERE user.isLookingForWork = true")
+            .getResultList();
+    }
+
+    @Override
     public List<String> getAllLogins() {
         return entityManager.createQuery("SELECT user.login FROM users user").getResultList();
     }
