@@ -9,4 +9,6 @@ public interface VacancyDao {
     void add(Vacancy vacancy);
 
     List<Vacancy> getAllOfProfession(Profession profession);
+
+    Vacancy findById(int id);
 }

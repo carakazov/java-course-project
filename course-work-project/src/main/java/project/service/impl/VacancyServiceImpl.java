@@ -10,12 +10,14 @@ import project.dao.ProfessionDao;
 import project.dao.UserDao;
 import project.dao.VacancyDao;
 import project.dto.AddVacancyDto;
+import project.dto.ShowVacancyDetailsDto;
 import project.dto.ShowVacancyDtoListItem;
 import project.model.Profession;
 import project.model.ProfessionEnum;
 import project.model.User;
 import project.model.Vacancy;
 import project.service.VacancyService;
+import project.support.mapper.VacancyDetailsMapper;
 import project.support.mapper.VacancyMapper;
 
 @Data
@@ -25,6 +27,7 @@ public class VacancyServiceImpl implements VacancyService {
     private final ProfessionDao professionDao;
     private final UserDao userDao;
     private final VacancyMapper vacancyMapper;
+    private final VacancyDetailsMapper vacancyDetailsMapper;
 
     @Override
     @Transactional
@@ -45,5 +48,10 @@ public class VacancyServiceImpl implements VacancyService {
     public List<ShowVacancyDtoListItem> getAllOfProfession(ProfessionEnum profession) {
         Profession profObj = professionDao.getByTitle(profession);
         return vacancyMapper.fromDto(vacancyDao.getAllOfProfession(profObj));
+    }
+
+    @Override
+    public ShowVacancyDetailsDto getDetails(int vacancyId) {
+        return vacancyDetailsMapper.toDto(vacancyDao.findById(vacancyId));
     }
 }

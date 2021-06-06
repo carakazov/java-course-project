@@ -301,8 +301,14 @@ public class BeanConfig {
             vacancyDao(),
             professionDao(),
             userDao(),
-            vacancyMapper()
+            vacancyMapper(),
+            vacancyDetailsMapper()
         );
+    }
+
+    @Bean
+    public VacancyDetailsMapper vacancyDetailsMapper() {
+        return new VacancyDetailsMapperImpl();
     }
 
     @Bean

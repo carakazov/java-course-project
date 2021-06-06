@@ -49,7 +49,8 @@
             </form:form>
             <a href="${pageContext.request.contextPath}/requestList">Show all received requests</a> <br>
             <a href="${pageContext.request.contextPath}/property">Add composition</a> <br>
-            <a href="${pageContext.request.contextPath}/vacancy">Add new vacancy</a>
+            <a href="${pageContext.request.contextPath}/vacancy">Add new vacancy</a> <br>
+            <a href="${pageContext.request.contextPath}/professions">Looking for job?</a>
         </c:if>
     </div>
 </div>

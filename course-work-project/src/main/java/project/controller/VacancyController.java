@@ -43,8 +43,8 @@ public class VacancyController {
         return new ModelAndView("redirect:users/" + vacancy.getEmployerLogin());
     }
 
-    @GetMapping("/vacancy/{profession}")
-    public ModelAndView vacancyList(@PathVariable("profession") ProfessionEnum profession) {
+    @GetMapping("/vacancy/find")
+    public ModelAndView vacancyList(@RequestParam(name = "profession") ProfessionEnum profession) {
         ModelAndView modelAndView = new ModelAndView("vacancyList");
         modelAndView.addObject("list", vacancyService.getAllOfProfession(profession));
         return modelAndView;
@@ -52,6 +52,8 @@ public class VacancyController {
 
     @GetMapping("/vacancy/{id}")
     public ModelAndView vacancyDetails(@PathVariable("id") int id) {
-        return null;
+        ModelAndView modelAndView = new ModelAndView("vacancyDetails");
+        modelAndView.addObject("item", vacancyService.getDetails(id));
+        return modelAndView;
     }
 }

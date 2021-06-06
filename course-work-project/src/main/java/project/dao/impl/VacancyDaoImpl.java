@@ -24,5 +24,12 @@ public class VacancyDaoImpl implements VacancyDao {
         return entityManager.createQuery("SELECT vacancy FROM vacancies vacancy WHERE vacancy.profession = :profession")
             .setParameter("profession", profession).getResultList();
     }
+
+    @Override
+    public Vacancy findById(int id) {
+        return (Vacancy) entityManager.createQuery("SELECT vacancy FROM vacancies vacancy WHERE vacancy.id = :id")
+            .setParameter("id", id)
+            .getSingleResult();
+    }
 }
 
