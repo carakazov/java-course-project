@@ -1,6 +1,7 @@
 package project.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,13 +54,19 @@ public class PropertyController {
 
     @GetMapping("/details/{id}")
     public ModelAndView details(@PathVariable("id") int id, HttpServletRequest request) {
+        String login = ((UserDto) request.getSession().getAttribute("session")).getLogin();
         ShowIntellectualPropertyDetailsDto property = propertyService.getForDetails(
             id,
-            ((UserDto) request.getSession().getAttribute("session")).getLogin()
+            login
         );
+        BuyRequestDto buyRequestDto = new BuyRequestDto();
+        buyRequestDto.setSender(login);
+        buyRequestDto.setPropertyId(id);
+        buyRequestDto.setSendingDate(LocalDateTime.now());
         ModelAndView modelAndView = new ModelAndView("details");
-        modelAndView.addObject("session", (request.getSession().getAttribute("session")));
+        modelAndView.addObject("session", ((UserDto) request.getSession().getAttribute("session")));
         modelAndView.addObject("item", property);
+        modelAndView.addObject("requestDto", buyRequestDto);
         return modelAndView;
     }
 

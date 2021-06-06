@@ -3,6 +3,7 @@ package project.service;
 import java.util.List;
 
 import project.dto.AddIntellectualPropertyDto;
+import project.dto.ChangeOwnershipDto;
 import project.dto.ShowIntellectualPropertyDetailsDto;
 import project.dto.ShowIntellectualPropertyDto;
 import project.model.IntellectualProperty;
@@ -19,4 +20,6 @@ public interface PropertyService {
     String getOwnerLoginByPropertyId(int propertyId);
 
     List<IntellectualProperty> getAllPropertyOfUser(String login);
+
+    void changeOwnership(ChangeOwnershipDto changeOwnershipDto);
 }

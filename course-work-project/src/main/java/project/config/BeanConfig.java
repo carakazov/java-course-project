@@ -19,19 +19,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import project.controller.LoginController;
-import project.controller.ModeratorController;
-import project.controller.PropertyController;
-import project.controller.UserController;
+import project.controller.*;
 import project.dao.*;
 import project.dao.impl.*;
 import project.dto.UserDto;
 import project.service.*;
 import project.service.impl.*;
-import project.support.mapper.IntellectualPropertyMapper;
-import project.support.mapper.IntellectualPropertyMapperImpl;
-import project.support.mapper.UserMapper;
-import project.support.mapper.UserMapperImpl;
+import project.support.mapper.*;
 
 @Configuration
 @ComponentScan("project")
@@ -175,7 +169,8 @@ public class BeanConfig {
             genreDao(),
             userService(),
             addIntellectualPropertyMapper(),
-            portfolioDao()
+            portfolioDao(),
+            buyRequestDao()
         );
     }
 
@@ -219,6 +214,67 @@ public class BeanConfig {
             userService(),
             propertyService(),
             accessBuyerProfileDao()
+        );
+    }
+
+    @Bean
+    public BuyRequestMapper buyRequestMapper() {
+        return new BuyRequestMapperImpl();
+    }
+
+    @Bean
+    public BuyRequestDao buyRequestDao() {
+        return new BuyRequestDaoImpl();
+    }
+
+    @Bean
+    public BuyRequestService buyRequestService() {
+        return new BuyRequestServiceImpl(
+            buyRequestDao(),
+            userService(),
+            propertyService(),
+            buyRequestMapper()
+        );
+    }
+
+    @Bean
+    public BuyRequestController buyRequestController() {
+        return new BuyRequestController(
+            buyRequestService(),
+            propertyService()
+        );
+    }
+
+    @Bean
+    public ReviewDao reviewDao() {
+        return new ReviewDaoImpl();
+    }
+
+    @Bean
+    public ReviewMapper reviewMapper() {
+        return new ReviewMapperImpl();
+    }
+
+    @Bean
+    public ReviewDetailsMapper reviewDetailsMapper() {
+        return new ReviewDetailsMapperImpl();
+    }
+
+    @Bean
+    public ReviewService reviewService() {
+        return new ReviewServiceImpl(
+            reviewDao(),
+            intellectualPropertyDao(),
+            userService(),
+            reviewMapper(),
+            reviewDetailsMapper()
+        );
+    }
+
+    @Bean
+    public ReviewController reviewController() {
+        return new ReviewController(
+            reviewService()
         );
     }
 }
