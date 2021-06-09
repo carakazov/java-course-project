@@ -15,8 +15,15 @@
     </style>
 </head>
 <body>
-<h1>Here you can find all professions you can find vacancies for</h1>
-<div>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
+    <h1>Here you can find all professions you can find vacancies for</h1>
     <c:forEach items="${list}" var="item">
         <div class="composition-block">
             <a href="${pageContext.request.contextPath}/vacancy/find?profession=${item}">${item}</a>

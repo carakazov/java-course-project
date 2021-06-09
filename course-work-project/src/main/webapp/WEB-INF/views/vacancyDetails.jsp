@@ -15,7 +15,14 @@
     </style>
 </head>
 <body>
-<div>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
     <div class="composition-block">
         Employer: <a
             href="/users/${item.item.employerLogin}">${item.item.employer.surname} ${item.item.employer.name} ${item.item.employer.middleName}</a>

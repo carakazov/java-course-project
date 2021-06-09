@@ -10,10 +10,20 @@
 <html>
 <head>
     <title>Write your review</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
-<h1>You can write your review here</h1>
-<div>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
+    <h1>You can write your review here</h1>
     <form:form modelAttribute="review" method="post" action="/review">
         <div>
             <form:hidden path="propertyId"/>

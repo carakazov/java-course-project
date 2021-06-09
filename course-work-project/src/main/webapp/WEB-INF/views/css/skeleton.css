@@ -737,16 +737,6 @@ header nav a:hover {
   padding-bottom: 5px;
   width: 500px;
 }
-/* ---------------- */
-.center-body {
-  width: 1000px;
-  margin: 1% auto;
-  background: #fdfeff;
-  padding: 10px 30px 5px;
-  border-radius: 5px;
-  border: 1px solid gainsboro;
-}
-
 .logo{
   margin-top: 0;
   margin-bottom: 2rem;
@@ -761,3 +751,48 @@ header nav a:hover {
   color: white;
   text-decoration: none;
 }
+/* ---------------- */
+.center-body {
+  width: 1000px;
+  margin: 1% auto;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+}
+.user-body {
+  width: 1000px;
+  margin: 1% auto;
+}
+.user-left {
+  display: inline-flex;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  width: 65%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+}
+.user-right {
+  display: inline-flex;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  width: auto;
+}
+.user-right a {
+  display: block;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.textarea{
+  width: 550px;
+  height: 150px;
+  resize: none;
+  margin-right: 5px;
+
+}
+
+
