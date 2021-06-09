@@ -15,6 +15,13 @@
     </script>
 </head>
 <body>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
 <div class="center-body">
     <h1>Subscribe form</h1>
     <form:form modelAttribute="subscribeDto" method="post" action="/subscribe">

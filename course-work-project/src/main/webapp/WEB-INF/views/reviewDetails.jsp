@@ -9,10 +9,20 @@
 <html>
 <head>
     <title>Review</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
-<h1>Here you can read full review</h1>
-<div>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
+    <h1>Here you can read full review</h1>
     <p>
         ${details.text}
     </p>

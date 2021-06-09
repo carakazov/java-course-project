@@ -16,8 +16,15 @@
     </style>
 </head>
 <body>
-<h1>All you received requests</h1>
-<div>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
+    <h1>All you received requests</h1>
     <c:forEach items="${list}" var="item">
         <div class="composition-block">
             <form:form

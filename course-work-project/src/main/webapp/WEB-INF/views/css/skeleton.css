@@ -737,16 +737,6 @@ header nav a:hover {
   padding-bottom: 5px;
   width: 500px;
 }
-/* ---------------- */
-.center-body {
-  width: 1000px;
-  margin: 1% auto;
-  background: #fdfeff;
-  padding: 10px 30px 5px;
-  border-radius: 5px;
-  border: 1px solid gainsboro;
-}
-
 .logo{
   margin-top: 0;
   margin-bottom: 2rem;
@@ -761,3 +751,14 @@ header nav a:hover {
   color: white;
   text-decoration: none;
 }
+/* ---------------- */
+.center-body {
+  width: 1000px;
+  margin: 1% auto;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+}
+
+

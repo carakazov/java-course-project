@@ -15,8 +15,15 @@
     </style>
 </head>
 <body>
-<h1>Here you can add new vacancy</h1>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
 <div class="center-body">
+    <h1>Here you can add new vacancy</h1>
     <form:form action="/vacancy" modelAttribute="vacancy" method="post">
         <form:hidden path="employerLogin"/>
         Description: <form:input path="description"/> <br>

@@ -10,8 +10,19 @@
 <html>
 <head>
     <title>All reviews</title>
+    <style>
+        <%@include file="css/skeleton.css"%>
+    </style>
 </head>
 <body>
+<header>
+    <div><a class="logo" href="/">REEL DIR</a></div>
+    <nav>
+        <a href="/users/${session.login}">Account</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<div class="center-body">
 <h1>All reviews for this composition</h1>
 <c:forEach items="${list}" var="item">
     <div class="composition-block">
@@ -23,5 +34,6 @@
         <a href="/review/details/${item.reviewId}">Read full review</a>
     </div>
 </c:forEach>
+</div>
 </body>
 </html>
