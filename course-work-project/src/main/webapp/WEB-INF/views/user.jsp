@@ -40,42 +40,46 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div>
-                    <c:if test="${user.login == session.login}">
-                        <label>Add description</label>
-                        <form:form action="/description" method="post"
-                                   modelAttribute="user">
-                            <form:hidden path="login"/>
-                            <form:textarea path="description"/>
-                            <button type="submit">Add</button>
-                        </form:form>
 
-                        <label>Add portfolio</label>
-                        <form:form action="/portfolio/add" enctype="multipart/form-data" method="post">
-                            <div>
-                                <input type="file" name="portfolio">
-                            </div>
-                            <div>
-                                <button type="submit" class="button">Add</button>
-                            </div>
-                        </form:form>
-                    </c:if>
-                    <c:if test="${user.portfolio != null}">
-                        <mytags:portfolio portfolioOwner="${user}"/>
-                    </c:if>
-
-                </div>
             </div>
         </div>
     </div>
+
     <div class="user-right">
         <div style="display: block">
-            <a href="${pageContext.request.contextPath}/requestList">Show all received requests</a>
             <a href="${pageContext.request.contextPath}/property">Add composition</a>
+            <a href="${pageContext.request.contextPath}/requestList">Show all received requests</a>
             <a href="${pageContext.request.contextPath}/vacancy">Add new vacancy</a>
             <a href="${pageContext.request.contextPath}/professions">Looking for job?</a>
             <a href="${pageContext.request.contextPath}/work">Search for employees</a>
         </div>
     </div>
+    <div class="user-left">
+        <div style="display: block">
+            <c:if test="${user.login == session.login}">
+                <label>Add description</label>
+                <form:form action="/description" method="post"
+                           modelAttribute="user" cssStyle="display: flex">
+                    <form:hidden path="login"/>
+                    <form:textarea path="description" cssClass="textarea"/>
+                    <button type="submit">Add</button>
+                </form:form>
+
+                <label>Add portfolio</label>
+                <form:form action="/portfolio/add" enctype="multipart/form-data" method="post">
+                    <div>
+                        <input type="file" name="portfolio">
+                    </div>
+                    <div>
+                        <button type="submit" class="button">Add</button>
+                    </div>
+                </form:form>
+            </c:if>
+            <c:if test="${user.portfolio != null}">
+                <mytags:portfolio portfolioOwner="${user}"/>
+            </c:if>
+        </div>
+    </div>
+</div>
 </body>
 </html>

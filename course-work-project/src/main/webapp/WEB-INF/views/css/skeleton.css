@@ -772,6 +772,7 @@ header nav a:hover {
   border: 1px solid gainsboro;
   width: 65%;
   margin-right: 2%;
+  margin-bottom: 1%;
 }
 .user-right {
   display: inline-flex;
@@ -785,6 +786,13 @@ header nav a:hover {
   display: block;
   margin: 5px 0;
   text-decoration: none;
+}
+.textarea{
+  width: 550px;
+  height: 150px;
+  resize: none;
+  margin-right: 5px;
+
 }
 
 
