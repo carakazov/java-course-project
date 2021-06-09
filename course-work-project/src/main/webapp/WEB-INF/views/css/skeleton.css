@@ -760,5 +760,31 @@ header nav a:hover {
   border-radius: 5px;
   border: 1px solid gainsboro;
 }
+.user-body {
+  width: 1000px;
+  margin: 1% auto;
+}
+.user-left {
+  display: inline-flex;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  width: 65%;
+  margin-right: 2%;
+}
+.user-right {
+  display: inline-flex;
+  background: #fdfeff;
+  padding: 10px 30px 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  width: auto;
+}
+.user-right a {
+  display: block;
+  margin: 5px 0;
+  text-decoration: none;
+}
 
 
