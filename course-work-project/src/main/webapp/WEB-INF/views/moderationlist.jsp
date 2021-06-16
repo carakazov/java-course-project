@@ -30,8 +30,8 @@
     <div class="composition-block">
         <mytag:showTag property="${item.property}"/>
         <div class="moderation-console">
-            <a href="/approve/${item.propertyId}" class="button">Approve</a>
-            <a href="/decline/${item.propertyId}" class="button">Decline</a>
+            <a href="/moderating/approve/${item.propertyId}" class="button">Approve</a>
+            <a href="/moderating/decline/${item.propertyId}" class="button">Decline</a>
         </div>
     </div>
 </c:forEach>

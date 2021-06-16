@@ -57,8 +57,6 @@
             </div>
     <div class="margin">
         <label>Choose content type</label>
-        <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="text"/>
-        <span>Text</span>
         <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="picture"/>
         <span>Photo</span>
         <form:radiobutton path="intellectualPropertyDto.attributes.contentType" value="video"/>

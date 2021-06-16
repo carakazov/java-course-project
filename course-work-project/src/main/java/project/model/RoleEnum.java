@@ -4,6 +4,6 @@ public enum RoleEnum {
     user,
     author,
     owner,
-    moderator,
+    ROLE_MODERATOR,
     admin
 }

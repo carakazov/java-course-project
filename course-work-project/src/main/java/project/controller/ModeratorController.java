@@ -3,12 +3,14 @@ package project.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import project.service.ModeratorService;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/moderating")
 public class ModeratorController {
     private final ModeratorService moderatorService;
 
@@ -22,12 +24,12 @@ public class ModeratorController {
     @GetMapping("/approve/{id}")
     public ModelAndView approve(@PathVariable("id") int id) {
         moderatorService.approve(id);
-        return new ModelAndView("redirect:/content");
+        return new ModelAndView("redirect:/moderating/content");
     }
 
     @GetMapping("/decline/{id}")
     public ModelAndView decline(@PathVariable("id") int id) {
         moderatorService.decline(id);
-        return new ModelAndView("redirect:/content");
+        return new ModelAndView("redirect:/moderating/content");
     }
 }
